@@ -11,8 +11,4 @@
     <script src="resources/js/bootstrap.min.js"></script>
 </head>
 <body>
-<img src="<c:url value="resources/imagens/puc.png"/>"/>
-<h2>Agenda de Contatos do(a) Pedro</h2>
-<hr />
-</body>
-</html>
+<!--<img src="<c:url value="resources/imagens/puc.png"/>"/>-->

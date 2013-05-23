@@ -1,6 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:import url="cabecalho.jsp" />
-<br />
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="container">
@@ -19,8 +17,8 @@
 				</ul>
 			</div>
 			<a href="logon.html" class="btn btn-link">Logon</a> 
-			<a 	class="navbar-text pull-right">Bem vindo, ${usuarioLogado.login}</a>	
-			<a href="logout">Sair do sistema</a>
+			<a class="navbar-text pull-right" href="logout"> - Sair do sistema</a>	
+			<a 	class="navbar-text pull-right">Bem vindo, ${usuarioLogado.login}</a>
+			
 		</div>
 	</div>
-	<c:import url="rodape.jsp" />
