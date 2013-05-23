@@ -1,18 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<h2>PÃ¡gina inicial da Lista de Tarefas</h2>
-<p>Bem vindo, ${usuarioLogado.login}</p>
-<a href="listaTarefas">Clique aqui</a> para acessar a
-lista de tarefas
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:import url="cabecalho.jsp" />
 <br />
-<a href="logout">Sair do sistema</a>
-
-</body>
-</html>
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand" href="#">Academida dos Aprovados</a> <a
+				class="btn btn-link">Home</a> <a class="btn btn-link"
+				href="cadastro_de_usuario.html">Cadastro</a>
+			<div class="btn-group">
+				<a class="btn dropdown-toggle btn-link" data-toggle="dropdown"
+					href="#"> Simulado <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#">Consultar Gabarito</a></li>
+					<li><a href="#">Simulado Passado</a></li>
+					<li><a href="#">Classificação Geral</a></li>
+					<li><a href="#">Classificação do Simulado</a></li>
+					<li><a href="listaTarefas">Lista de tarefas</a></li>
+				</ul>
+			</div>
+			<a href="logon.html" class="btn btn-link">Logon</a> 
+			<a 	class="navbar-text pull-right">Bem vindo, ${usuarioLogado.login}</a>	
+			<a href="logout">Sair do sistema</a>
+		</div>
+	</div>
+	<c:import url="rodape.jsp" />

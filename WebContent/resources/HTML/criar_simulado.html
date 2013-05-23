@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Criar Simulado</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" >
+    <link rel="stylesheet" href="css/bootstrap.css" >
+    <link rel="stylesheet" href="css/bootstrap-responsive.css" >
+    <script src="js/jquery.min.js" ></script>
+    <script src="js/bootstrap.min.js" ></script>
+  </head>
+  
+  <body>
+    <div class="navbar" >
+      <div class="navbar-inner" >
+        <div class="container" >
+          <a class="brand" href="#" >Academida dos Aprovados</a>
+          <a class="btn btn-link" href="home.html" >Home</a>
+          <div class="btn-group" >
+            <a class="btn dropdown-toggle btn-link" data-toggle="dropdown" >
+    Consultar
+    <span class="caret" ></span></a>
+            <ul class="dropdown-menu" >
+              <li>
+                <a href="consultar_usuario.html" >Consultar Usuário</a> 
+              </li>
+              <li>
+                <a href="consultar_area_de_conhecimento.html" >Consultar Área de Conhecimento</a> 
+              </li>
+              <li>
+                <a href="consultar_organizadora.html" >Consultar Organizadora</a> 
+              </li>
+              <li>
+                <a href="consultar_concurso.html" >Consultar Concurso</a> 
+              </li>
+              <li>
+                <a href="consultar_questao.html" >Consultar Questão</a> 
+              </li>
+              <li>
+                <a href="consultar_noticia.html" >Consultar Notícia</a> 
+              </li>
+            </ul>
+          </div>
+          <div class="btn-group" >
+            <a class="btn dropdown-toggle btn-link" data-toggle="dropdown" >
+          Incluir <span class="caret" ></span>
+        </a>
+            <ul class="dropdown-menu" >
+              <li>
+                <a href="incluir_usuario.html" >Incluir Usuário</a> 
+              </li>
+              <li>
+                <a href="incluir_area_de_conhecimento.html" >Incluir Área de Conhecimento</a> 
+              </li>
+              <li>
+                <a href="incluir_organizadora.html" >Incluir Organizadora</a> 
+              </li>
+              <li>
+                <a href="incluir_concurso.html" >Incluir Concurso</a> 
+              </li>
+              <li>
+                <a href="incluir_questao.html" >Incluir Questão</a> 
+              </li>
+              <li>
+                <a href="incluir_noticia.html" >Incluir Notícia</a> 
+              </li>
+            </ul>
+          </div>
+          <a class="btn btn-link active" >Criar Simulado</a>
+          <a class="navbar-text pull-right" >Bem-vindo Administrador</a> 
+        </div>
+      </div>
+      <div class="container-fluid" >
+        <div class="row-fluid" >
+          <div class="pull-left span4" >
+            <ul class="nav  nav-pills nav-stacked" ></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" >
+      <div class="span1" >
+        <a> </a> 
+      </div>
+      <div class="span11" >
+        <ol class="breadcrumb" >
+                  <li>
+            <a href="home.html" ><i class="icon-home" ></i> Home</a>
+            <span class="divider" >/</span> 
+          </li>
+          <li>
+            <a href="area_admin.html" >Área de Administração</a>
+            <span class="divider" >/</span> 
+          </li>
+          <li class="active" >Criar Simulado</li>
+        </ol>
+        <form class="form-signin form-horizontal" >
+          <fieldset>
+            <legend>Criar Simulado</legend>
+            <div class="control-group" >
+              <label class="control-label" >*Título</label>
+              <div class="controls" >
+                <input id="nomeusr" name="nomeusr" type="text" placeholder="Título do Simulado" class="input-xlarge" required="" data-errormessage-value-missing="Campo obrigatório não preenchido." value="" /> 
+              </div>
+            </div>
+            <!-- Text input-->
+            <div class="control-group" >
+              <label class="control-label" >*Área de Conhecimento</label>
+              <div class="controls controls-row" >
+                <select id="escolaridadeusr" name="escolaridadeusr" class="input-xlarge span2" default="3" style="" >
+                  <option>Direito do Trabalho</option>
+                  <option>Direito Constitucional</option>
+                  <option>Português</option>
+                  <option>Informática</option>
+		         </select> 
+    			 <label class="span1 control-label" >*Número de Questões</label>
+    			 <input class="span2" type="text" placeholder="Núm. de Questões" />      
+              </div>
+            </div>
+            <div class="control-group" >
+              <label class="control-label" >Área de Conhecimento</label>
+              <div class="controls controls-row" >
+                <select id="escolaridadeusr" name="escolaridadeusr" class="input-xlarge span2" default="2" style="" >
+					<option>Nenhum</option>
+                  <option>Direito do Trabalho</option>
+                  <option>Direito Constitucional</option>
+                  <option>Português</option>
+                  <option>Informática<!--	option-->
+                </option></select> 
+    			 <label class="span1 control-label" >*Número de Questões</label>
+    			 <input class="span2" type="text" placeholder="Núm. de Questões" />      
+              </div>
+            </div>
+            <div class="control-group" >
+              <label class="control-label" >Área de Conhecimento</label>
+              <div class="controls controls-row" >
+                <select id="escolaridadeusr" name="escolaridadeusr" class="input-xlarge span2" default="2" style="" >
+					<option>Nenhum</option>
+                  <option>Direito do Trabalho</option>
+                  <option>Direito Constitucional</option>
+                  <option>Português</option>
+                  <option>Informática<!--	option-->
+                </option></select> 
+    			 <label class="span1 control-label" >*Número de Questões</label>
+    			 <input class="span2" type="text" placeholder="Núm. de Questões" />      
+              </div>
+            </div>
+            <div class="control-group" >
+              <label class="control-label" >Área de Conhecimento</label>
+              <div class="controls controls-row" >
+                <select id="escolaridadeusr" name="escolaridadeusr" class="input-xlarge span2" default="2" style="" >
+					<option>Nenhum</option>
+                  <option>Direito do Trabalho</option>
+                  <option>Direito Constitucional</option>
+                  <option>Português</option>
+                  <option>Informática<!--	option-->
+                </option></select> 
+    			 <label class="span1 control-label" >*Número de Questões</label>
+    			 <input class="span2" type="text" placeholder="Núm. de Questões" />      
+              </div>
+            </div>
+            <div class="control-group" >
+              <label class="control-label" >Área de Conhecimento</label>
+              <div class="controls controls-row" >
+                <select id="escolaridadeusr" name="escolaridadeusr" class="input-xlarge span2" default="2" style="" >
+					<option>Nenhum</option>
+                  <option>Direito do Trabalho</option>
+                  <option>Direito Constitucional</option>
+                  <option>Português</option>
+                  <option>Informática<!--	option-->
+                </option></select> 
+    			 <label class="span1 control-label" >*Número de Questões</label>
+    			 <input class="span2" type="text" placeholder="Núm. de Questões" />      
+              </div>
+            </div>
+            <!-- Text input-->
+            <div class="control-group" >
+              <label class="control-label" >*Data de Realização</label>
+              <div class="controls" >
+                <input id="datanascimentousr" name="datanascimentousr" type="text" placeholder="Data de realização do Simulado" class="input-xlarge" required="" data-errormessage-value-missing="Campo obrigatório não preenchido." value="" /> 
+              </div>
+            </div>
+            <div class="control-group" >
+              <label class="control-label" >*Hora de Realização</label>
+              <div class="controls" >
+                <input id="datanascimentousr" name="datanascimentousr" type="text" placeholder="Hora de realização do Simulado" class="input-xlarge" required="" data-errormessage-value-missing="Campo obrigatório não preenchido." value="" /> 
+              </div>
+            </div>
+            <div class="control-group" >
+              <label class="control-label" >*Duração</label>
+              <div class="controls" >
+                <input id="datanascimentousr" name="datanascimentousr" type="text" placeholder="Duração do Simulado" class="input-xlarge" required="" data-errormessage-value-missing="Campo obrigatório não preenchido." value="" /> 
+              </div>
+            </div>
+            <div class="control-group" >
+              <label class="control-label" >*Pontuação Mínima</label>
+              <div class="controls" >
+                <input id="datanascimentousr" name="datanascimentousr" type="text" placeholder="Pontuação Mínima do Simulado" class="input-xlarge" required="" data-errormessage-value-missing="Campo obrigatório não preenchido." value="" /> 
+              </div>
+            </div>
+            <div class="control-group" >
+              <div class="controls" >
+              <label class="control-label" >* Campos obrigatórios</label>
+              <div>
+            </div>               
+          </div></div></fieldset>
+          <div class="form-actions" >
+            <button type="submit" class="btn btn-primary " >Criar Simulado</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+
+</body></html>

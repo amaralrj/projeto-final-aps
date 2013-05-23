@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Consultar Noticia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" >
+    <link rel="stylesheet" href="css/bootstrap.css" >
+    <link rel="stylesheet" href="css/bootstrap-responsive.css" >
+    <script src="js/jquery.min.js" ></script>
+    <script src="js/bootstrap.min.js" ></script>
+  </head>
+  
+  <body>
+    <div class="navbar" >
+      <div class="navbar-inner" >
+        <div class="container" >
+          <a class="brand" href="#" >Academida dos Aprovados</a>
+          <a class="btn btn-link" href="home.html">Home</a>
+          <div class="btn-group" >
+            <a class="btn dropdown-toggle btn-link" data-toggle="dropdown">
+    Consultar
+    <span class="caret" ></span></a>
+            <ul class="dropdown-menu" >
+              <li>
+                <a href="consultar_usuario.html" >Consultar Usuário</a> 
+              </li>
+              <li>
+                <a href="consultar_area_de_conhecimento.html" >Consultar Área de Conhecimento</a> 
+              </li>
+              <li>
+                <a href="consultar_organizadora.html" >Consultar Organizadora</a> 
+              </li>
+              <li>
+                <a href="consultar_concurso.html" >Consultar Concurso</a> 
+              </li>
+              <li>
+                <a href="consultar_questao.html" >Consultar Questão</a> 
+              </li>
+              <li>
+                <a href="consultar_noticia.html" >Consultar Notícia</a> 
+              </li>
+            </ul>
+          </div>
+          <div class="btn-group" >
+            <a class="btn dropdown-toggle btn-link" data-toggle="dropdown">
+          Incluir <span class="caret" ></span>
+        </a>
+            <ul class="dropdown-menu" >
+              <li>
+                <a href="incluir_usuario.html" >Incluir Usuário</a> 
+              </li>
+              <li>
+                <a href="incluir_area_de_conhecimento.html" >Incluir Área de Conhecimento</a> 
+              </li>
+              <li>
+                <a href="incluir_organizadora.html" >Incluir Organizadora</a> 
+              </li>
+              <li>
+                <a href="incluir_concurso.html" >Incluir Concurso</a> 
+              </li>
+              <li>
+                <a href="incluir_questao.html" >Incluir Questão</a> 
+              </li>
+              <li>
+                <a href="incluir_noticia.html" >Incluir Notícia</a> 
+              </li>
+            </ul>
+          </div>
+          <a class="btn btn-link" >Criar Simulado</a>
+          <a class="navbar-text pull-right" >Bem-vindo Administrador</a> 
+        </div>
+      </div>
+      <div class="container-fluid" >
+        <div class="row-fluid" >
+          <div class="pull-left span4" >
+            <ul class="nav  nav-pills nav-stacked" ></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" >
+      <div class="span1" >
+        <a> </a> 
+      </div>
+      <div class="span11" >
+        <ol class="breadcrumb" >
+                  <li>
+            <a href="home.html"><i class="icon-home" ></i> Home</a>
+            <span class="divider" >/</span> 
+          </li>
+          <li>
+            <a href="area_admin.html" >Área de Administração</a>
+            <span class="divider" >/</span> 
+          </li>
+          <li class="active" >Consultar Notícia</li>
+        </ol>
+        <form>
+          <fieldset>
+            <legend>Consultar Notícia</legend>
+            <div class="control-group" >
+              <label class="control-label" for="inputNome" >
+                <b>Título</b> 
+              </label>
+              <div class="controls" >
+                <input type="text" id="inputNome" placeholder="Título da Notícia" /> 
+              </div>
+            </div>
+          </fieldset>
+          <div class="form-actions" >
+            <button type="submit" class="btn btn-primary" >Consultar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="container" >
+      <table class="table table-hover table-bordered table-condensed table-striped" >
+        <caption>
+          <b><h4 class="pull-left" >Lista de Notícias</h4></b> 
+        </caption>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Título</th>
+            <th>Texto</th>
+            <th>Data de Criação</th>
+            <th>Operação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Concurso Banco do Brasil</td>
+            <td>Capuzes furioso os cumprir doencas da ir facamos. Casas vosso em os animo
+              iv. Caso oito me es ha ar ares.</td>
+            <td>19/04/2013</td>
+            <td>
+              <a href="#modalDetalhes" role="button" class="btn" data-toggle="modal" >Detalhar</a>
+              <a href="alterar_noticia.html" role="button" class="btn">Alterar</a>
+              <a href="#modalExcluir" role="button" class="btn" data-toggle="modal" >Excluir</a> 
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Concurso da Marinha do Brasil</td>
+            <td>Ca prudente em ma chegamos ir apagaram. Ma apaixonada habituarem padredisse
+              secretaria se nobilitado de ha. Dar com cruzes ido aberto nos dignos queixa
+              feitos.</td>
+            <td>19/04/2013</td>
+            <td>
+              <a class="btn" >Detalhar</a>
+              <a class="btn" >Alterar</a>
+              <a class="btn" >Excluir</a> 
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Novo Simulado disponível !</td>
+            <td>Outros ca do da as altura crueis entrar gostam. Mude arte como pao meio
+              uma amam ide. Fiz fui punhalada mau tao affeicoes asseveras dolorosas.</td>
+            <td>19/04/2013</td>
+            <td>
+              <a class="btn" >Detalhar</a>
+              <a class="btn" >Alterar</a>
+              <a class="btn" >Excluir</a> 
+            </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Saiu edital do concurso para o BNDS</td>
+            <td>Elle ceia fiel apre mo tens iv rara ha. Quem dos por tome foi digo. Percorrer
+              lia consorcio vae hypothese sem dedicados invisivel manietada.</td>
+            <td>19/04/2013</td>
+            <td>
+              <a class="btn" >Detalhar</a>
+              <a class="btn" >Alterar</a>
+              <a class="btn" >Excluir</a> 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Modal Excluir -->
+    <div id="modalExcluir" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none; " >
+      <div class="modal-header" style="" >
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >×</button>
+        <h3>Excluir Notícia</h3>
+      </div>
+      <div class="modal-body" >
+        <p>Confirma a exclusão da notícia ?</p>
+      </div>
+      <div class="modal-footer" >
+        <a href="#" class="btn" data-dismiss="modal" aria-hidden="true" style="" >Sim</a>
+        <a href="#" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" style="" >Não</a> 
+      </div>
+    </div>
+    <!-- Modal Detalhar -->
+    <div id="modalDetalhes" class="modal hide fade" style="display:none; " aria-hidden="true" >
+      <div class="modal-header" >
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >×</button>
+        <h3 id="myModalLabel" >Detalhes da Notícia</h3>
+      </div>
+      <div class="modal-body" >
+        <form class="form-horizontal" style="" >
+          <div class="control-group" >
+            <label class="control-label" >Título</label>
+            <div class="controls" >
+              <span class="input-xlarge uneditable-input" >Concurso Banco do Brasil
+          </span> 
+            </div>
+          </div>
+          <div class="control-group" >
+            <label class="control-label" >Texto</label>
+            <div class="controls" style="" >
+              <textarea rows="10" disabled="" style="margin-left:0; margin-right:0; width:271px; " >Capuzes furioso os cumprir doencas da ir facamos. Casas vosso em os animoiv.
+                Caso oito me es ha ar ares.</textarea>
+            </div>
+          </div>
+          <div class="control-group" >
+            <label class="control-label" >Data de Criação</label>
+            <div class="controls" >
+              <span class="input-xlarge uneditable-input" >19/04/2013
+          </span> 
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" >
+        <a href="#" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" style="" >Fechar</a> 
+      </div>
+    </div>
+  
+
+</body></html>
