@@ -1,21 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-
-<link type="text/css" href="resources/css/projeto.css" rel="stylesheet" />
-
-</head>
-<body>
-	<h2>PÃ¡gina de Login das Tarefas</h2>
-	<form action="efetuaLogin" method="post">
-		Login: <input type="text" name="login" /> <br /> Senha: <input
-			type="password" name="senha" /> <br /> <input type="submit"
-			value="Entrar nas tarefas" />
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:import url="cabecalho.jsp" />
+<c:import url="menu.jsp" />
+<br />
+<div class="container">
+	<form action="efetuaLogin" class="form-signin" method="POST">
+		<legend>
+			<h2 class="form-signin-heading">Favor logar-se</h2>
+		</legend>
+		<input type="text" name="login" class="input-block-level"
+			placeholder="Endereço de Email" /> <input type="password"
+			name="senha" class="input-block-level" placeholder="Senha" />
+		<button class="btn btn-large btn-primary" type="submit">Logon</button>
 	</form>
-
-</body>
-</html>
+</div>
+<c:import url="rodape.jsp" />
