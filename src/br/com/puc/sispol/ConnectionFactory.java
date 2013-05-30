@@ -15,7 +15,7 @@ public class ConnectionFactory {
 			throw new SQLException(e);
 		}
 		
-		return DriverManager.getConnection("jdbc:mysql://localhost/jdbc",
+		return DriverManager.getConnection("jdbc:mysql://localhost/sispol",
 				"root", "root");
 	}
 

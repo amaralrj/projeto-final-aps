@@ -21,7 +21,7 @@
 			</c:if> 
 			<c:if test="${usuarioLogado ne null}">
 			<a class="navbar-text pull-right" href="logout"> - Sair do sistema</a>	
-			<a 	class="navbar-text pull-right">Bem vindo, ${usuarioLogado.login}&nbsp; </a>
+			<a 	class="navbar-text pull-right">Bem vindo, ${usuarioLogado.nome}&nbsp; </a>
 			</c:if>
 			
 		</div>

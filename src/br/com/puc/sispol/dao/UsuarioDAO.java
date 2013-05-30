@@ -27,8 +27,8 @@ public class UsuarioDAO {
 		}*/
 		
 		try {
-			PreparedStatement stmt = this.connection.prepareStatement("select * from usuarios where login = ? and senha = ?");
-			stmt.setString(1, usuario.getLogin());
+			PreparedStatement stmt = this.connection.prepareStatement("select * from Usuario where email = ? and senha = ?");
+			stmt.setString(1, usuario.getEmail());
 			stmt.setString(2, usuario.getSenha());
 			ResultSet rs = stmt.executeQuery();
 			boolean encontrado = false;
@@ -50,9 +50,9 @@ public class UsuarioDAO {
 
 		try {
 			PreparedStatement stmt = this.connection
-					.prepareStatement("select * from usuarios where login = ?");
-			stmt.setString(1, usuario.getLogin());
-
+					.prepareStatement("select * from Usuario where email = ? AND senha = ?" );
+			stmt.setString(1, usuario.getEmail());
+			stmt.setString(2, usuario.getSenha());
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
@@ -72,9 +72,10 @@ public class UsuarioDAO {
 		Usuario usuario = new Usuario();
 
 		// popula o objeto tarefa
-		usuario.setLogin(rs.getString("login"));
+		usuario.setEmail(rs.getString("email"));
 		usuario.setSenha(rs.getString("senha"));
 		usuario.setPerfil(rs.getString("perfil"));
+		usuario.setNome(rs.getString("nome"));
 
 		return usuario;
 	}

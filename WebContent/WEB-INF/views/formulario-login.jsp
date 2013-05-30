@@ -11,9 +11,9 @@
 		</legend>
 		<div class="control-group">
 			<div class="controls">
-				<input type="text" name="login" class="input-block-level"
+				<input type="text" name="email" class="input-block-level"
 					placeholder="Endereço de Email" /> 
-				<form:errors path="usuario.login" class="text-error" />
+				<form:errors path="usuario.email" class="text-error" />
 
 			</div>
 		</div>

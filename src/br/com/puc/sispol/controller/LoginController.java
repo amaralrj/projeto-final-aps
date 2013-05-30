@@ -32,13 +32,13 @@ public class LoginController {
 		if (new UsuarioDAO().existeUsuario(usuario)) {
 			session.setAttribute("usuarioLogado", user);
 
-			if (user.getPerfil().equals("admin")) {
+			if (user.getPerfil().equals("ADMIN")) {
 				return "redirect:areaAdmin";
 			} else {
 				return "redirect:areaUsuario";
 			}
 		}
-		result.rejectValue("login", "login.notvalid", "Login inválido.");
+		result.rejectValue("email", "email.notvalid", "E-mail ou Senha inválidos.");
 		return "formulario-login";
 	}
 

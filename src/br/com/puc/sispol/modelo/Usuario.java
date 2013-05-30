@@ -5,9 +5,13 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class Usuario {
-	@NotEmpty(message = "O login deve ser preenchido.")
-	@NotNull(message = "O login deve ser preenchido.")
-	private String login;
+	
+	
+	@NotEmpty(message = "O e-mail deve ser preenchido.")
+	@NotNull(message = "O e-mail deve ser preenchido.")
+	private String email;
+	
+	private String nome;
 
 	@NotEmpty(message = "A senha deve ser preenchida.")
 	@NotNull(message = "A senha deve ser preenchida.")
@@ -15,12 +19,12 @@ public class Usuario {
 
 	private String perfil;
 
-	public String getLogin() {
-		return login;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSenha() {
@@ -37,6 +41,14 @@ public class Usuario {
 
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }
