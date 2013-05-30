@@ -16,9 +16,13 @@
 					<li><a href="listaTarefas">Lista de tarefas</a></li>
 				</ul>
 			</div>
-			<a href="loginForm" class="btn btn-link">Logon</a> 
+			<c:if test="${usuarioLogado eq null}">
+			<a href="loginForm" class="btn btn-link">Logon</a>
+			</c:if> 
+			<c:if test="${usuarioLogado ne null}">
 			<a class="navbar-text pull-right" href="logout"> - Sair do sistema</a>	
-			<a 	class="navbar-text pull-right">Bem vindo, ${usuarioLogado.login}</a>
+			<a 	class="navbar-text pull-right">Bem vindo, ${usuarioLogado.login}&nbsp; </a>
+			</c:if>
 			
 		</div>
 	</div>

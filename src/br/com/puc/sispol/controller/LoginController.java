@@ -1,9 +1,12 @@
 package br.com.puc.sispol.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.puc.sispol.dao.UsuarioDAO;
 import br.com.puc.sispol.modelo.Usuario;
@@ -15,13 +18,38 @@ public class LoginController {
 		return "formulario-login";
 	}
 
-	@RequestMapping("efetuaLogin")
-	public String efetuaLogin(Usuario usuario, HttpSession session) {
-		if (new UsuarioDAO().existeUsuario(usuario)) {
-			session.setAttribute("usuarioLogado", usuario);
-			return "menu";
+	@RequestMapping(value = "/efetuaLogin", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public String efetuaLogin(@Valid Usuario usuario, BindingResult result,
+			HttpSession session) {
+		
+		if (result.hasErrors()) {
+			return "formulario-login";
 		}
-		return "redirect:loginForm";
+
+		Usuario user = new Usuario();
+		user = new UsuarioDAO().buscaPorLogin(usuario);
+		if (new UsuarioDAO().existeUsuario(usuario)) {
+			session.setAttribute("usuarioLogado", user);
+
+			if (user.getPerfil().equals("admin")) {
+				return "redirect:areaAdmin";
+			} else {
+				return "redirect:areaUsuario";
+			}
+		}
+		result.rejectValue("login", "login.notvalid", "Login inválido.");
+		return "formulario-login";
+	}
+
+	@RequestMapping("areaAdmin")
+	public String areaAdmin(HttpSession session) {
+		return "area_admin";
+	}
+
+	@RequestMapping("areaUsuario")
+	public String areaUsuario(HttpSession session) {
+		return "area_usuario";
 	}
 
 	@RequestMapping("logout")

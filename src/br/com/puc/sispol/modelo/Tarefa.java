@@ -9,13 +9,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class Tarefa {
 	private Long id;
-	
-	@NotNull(message="A descrição deve ser preenchida") @Size(min=5, message="A descrição deve ser preenchida"
-)
+
+	@NotNull(message = "A descrição deve ser preenchida")
+	@Size(min = 5, message = "A descrição deve ser preenchida")
 	private String descricao;
 	private boolean finalizado;
-	
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Calendar dataFinalizacao;
 
 	public Long getId() {

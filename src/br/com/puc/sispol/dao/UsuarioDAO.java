@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.com.puc.sispol.ConnectionFactory;
+import br.com.puc.sispol.modelo.Tarefa;
 import br.com.puc.sispol.modelo.Usuario;
 
 public class UsuarioDAO {
@@ -21,17 +22,17 @@ public class UsuarioDAO {
 
 	public boolean existeUsuario(Usuario usuario) {
 		
-		if(usuario == null) {
+		/*if(usuario == null) {
 			throw new IllegalArgumentException("Usuário não deve ser nulo");
-		}
+		}*/
 		
 		try {
 			PreparedStatement stmt = this.connection.prepareStatement("select * from usuarios where login = ? and senha = ?");
 			stmt.setString(1, usuario.getLogin());
 			stmt.setString(2, usuario.getSenha());
 			ResultSet rs = stmt.executeQuery();
-
-			boolean encontrado = rs.next();
+			boolean encontrado = false;
+			encontrado = rs.next();
 			rs.close();
 			stmt.close();
 
@@ -39,6 +40,43 @@ public class UsuarioDAO {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	public Usuario buscaPorLogin(Usuario usuario) {
+
+		/*if (usuario.getLogin() == "") {
+			throw new IllegalStateException("Login do usuario não deve ser nulo.");
+		}*/
+
+		try {
+			PreparedStatement stmt = this.connection
+					.prepareStatement("select * from usuarios where login = ?");
+			stmt.setString(1, usuario.getLogin());
+
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				return populaUsuario(rs);
+			}
+
+			rs.close();
+			stmt.close();
+
+			return null;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	private Usuario populaUsuario(ResultSet rs) throws SQLException {
+		Usuario usuario = new Usuario();
+
+		// popula o objeto tarefa
+		usuario.setLogin(rs.getString("login"));
+		usuario.setSenha(rs.getString("senha"));
+		usuario.setPerfil(rs.getString("perfil"));
+
+		return usuario;
 	}
 }
 
