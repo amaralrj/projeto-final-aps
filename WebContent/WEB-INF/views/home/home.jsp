@@ -24,7 +24,7 @@
                   realizados ou cadastre-se para participar de Simulados em tempo real.</p>
               </div>
               <div class="span4">
-                <h2>EstatÃ­sticas</h2>
+                <h2>Estatísticas</h2>
                 <p>Cadastre-se compare o seu desempenho ao dos outros usuários. Veja em
                   que matérias você precisa estudar mais.</p>
               </div>
