@@ -65,11 +65,11 @@
 					</c:if>
 				</ul>
 			</div>
-			<a class="btn btn-link ">Criar Simulado</a>
 			<c:if test="${usuarioLogado eq null}">
 				<a href="loginForm" class="btn btn-link">Logon</a>
 			</c:if>
 			<c:if test="${usuarioLogado ne null}">
+				<a class="btn btn-link ">Criar Simulado</a>
 				<a class="btn btn-link" href="logout">Logoff</a>
 				<a class="navbar-text pull-right">Bem-vindo
 					${usuarioLogado.nome}</a>
