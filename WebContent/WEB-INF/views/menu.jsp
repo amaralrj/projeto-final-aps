@@ -35,8 +35,11 @@
 					</a>
 					<ul class="dropdown-menu">
 						<li><a href="incluir_usuario.html">Incluir Usuário</a></li>
-						<li><a href="incluir_area_de_conhecimento.html">Incluir
-								Área de Conhecimento</a></li>
+
+						<c:if test="${usuarioLogado.perfil == 'ADMIN'}">
+							<li><a href="novaAreaDeConhecimento">Incluir
+									Área de Conhecimento</a></li>
+						</c:if>
 						<li><a href="incluir_organizadora.html">Incluir
 								Organizadora</a></li>
 						<li><a href="incluir_concurso.html">Incluir Concurso</a></li>
