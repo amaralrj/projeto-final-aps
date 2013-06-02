@@ -5,7 +5,7 @@
 			<c:if test="${usuarioLogado eq null}">
 				<a class="brand" href="mostraHome">Academida dos Aprovados</a>
 				<a class="btn btn-link" href="mostraHome">Home</a>
-				<a class="btn btn-link" href="cadastro_de_usuario.html">Cadastro</a>
+				<a class="btn btn-link" href="novoUsuario">Cadastro</a>
 			</c:if>
 			<c:if test="${usuarioLogado ne null}">
 				<c:if test="${usuarioLogado.perfil == 'ADMIN'}">
