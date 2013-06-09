@@ -37,8 +37,8 @@
 						<li><a href="incluir_usuario.html">Incluir Usuário</a></li>
 
 						<c:if test="${usuarioLogado.perfil == 'ADMIN'}">
-							<li><a href="novaAreaDeConhecimento">Incluir
-									Área de Conhecimento</a></li>
+							<li><a href="novaAreaDeConhecimento">Incluir Área de
+									Conhecimento</a></li>
 						</c:if>
 						<li><a href="incluir_organizadora.html">Incluir
 								Organizadora</a></li>
@@ -72,7 +72,9 @@
 				<a href="loginForm" class="btn btn-link">Logon</a>
 			</c:if>
 			<c:if test="${usuarioLogado ne null}">
-				<a class="btn btn-link ">Criar Simulado</a>
+				<c:if test="${usuarioLogado.perfil == 'ADMIN'}">
+					<a class="btn btn-link ">Criar Simulado</a>
+				</c:if>
 				<a class="btn btn-link" href="logout">Logoff</a>
 				<a class="navbar-text pull-right">Bem-vindo
 					${usuarioLogado.nome}</a>
