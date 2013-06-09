@@ -18,7 +18,7 @@
 			<li class="active">Área do Usuário</li>
 		</ol>
 		<div class="hero-unit">
-			<h1>Bem-Vindo Juan</h1>
+			<h1>Bem-Vindo ${usuarioLogado.nome}</h1>
 			<p>Área do Usuário</p>
 		</div>
 	</div>

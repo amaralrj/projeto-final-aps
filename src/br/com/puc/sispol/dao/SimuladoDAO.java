@@ -1,13 +1,12 @@
 package br.com.puc.sispol.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.com.puc.sispol.ConnectionFactory;
-import br.com.puc.sispol.modelo.AreaDeConhecimento;
-import br.com.puc.sispol.modelo.Tarefa;
+import br.com.puc.sispol.modelo.Simulado;
 
 public class SimuladoDAO {
 	private final Connection connection;
@@ -20,13 +19,17 @@ public class SimuladoDAO {
 		}
 	}
 
-	public void adiciona(AreaDeConhecimento areaDeConhecimento) {
-		String sql = "insert into AreaDeConhecimento (Titulo, Descricao) values (?,?)";
+	public void adiciona(Simulado simulado) {
+		String sql = "insert into Simulado (DataDeRealizacao, HoraDeRealizacao, Duracao, PontuacaoMinima, Titulo) values (?,?,?,?,?)";
 		PreparedStatement stmt;
 		try {
+			
 			stmt = connection.prepareStatement(sql);
-			stmt.setString(1, areaDeConhecimento.getTitulo());
-			stmt.setString(2, areaDeConhecimento.getDescricao());
+			stmt.setDate(1, simulado.getDataDeRealizacao() != null ? new Date(simulado.getDataDeRealizacao().getTimeInMillis()) : null);
+			stmt.setString(2, simulado.getHoraDeRealizacao());
+			stmt.setLong(3, simulado.getDuracao());
+			stmt.setLong(4, simulado.getPontuacaoMinima());
+			stmt.setString(5, simulado.getTitulo());
 			stmt.execute();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

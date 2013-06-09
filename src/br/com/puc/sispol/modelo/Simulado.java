@@ -1,39 +1,75 @@
 package br.com.puc.sispol.modelo;
 
+
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Simulado {
-	private Long id;
+	private Long codSimulado;
+	
+	@NotNull(message = "A Data deve ser preenchida.")
+	@DateTimeFormat(pattern="dd/MM/YYYY")
+	private Calendar dataDeRealizacao;
+	
+	@NotEmpty(message = "A Hora deve ser preenchida.")
+	private String horaDeRealizacao;
+	
+	public Long getCodSimulado() {
+		return codSimulado;
+	}
 
-	@NotNull(message = "O Título deve ser preenchido.")
-	@Size(min = 5, message = "O Título deve ser preenchido.")
-	@NotEmpty(message = "O Título deve ser preenchido.")
+	public void setCodSimulado(Long codSimulado) {
+		this.codSimulado = codSimulado;
+	}
+
+	public String getHoraDeRealizacao() {
+		return horaDeRealizacao;
+	}
+
+	public void setHoraDeRealizacao(String horaDeRealizacao) {
+		this.horaDeRealizacao = horaDeRealizacao;
+	}
+
+	//@NotEmpty(message = "A Hora deve ser preenchida.")
+	@NotNull(message = "A Duração deve ser preenchida.")
+	private Integer duracao;
+	
+	@NotNull(message = "A Pontuação deve ser preenchida.")
+	private Integer pontuacaoMinima;
+
+	@NotEmpty(message = "O Título deve ser preenchida.")
 	private String titulo;
 	
-	@NotNull(message = "A Descrição deve ser preenchida.")
-	@NotEmpty(message = "O Descrição deve ser preenchido.")
-	private String descricao;
-
-	public Long getId() {
-		return id;
+  
+	public Calendar getDataDeRealizacao() {
+		return dataDeRealizacao;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setDataDeRealizacao(Calendar dataDeRealizacao) {
+		this.dataDeRealizacao = dataDeRealizacao;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	
+	public Integer getDuracao() {
+		return duracao;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDuracao(Integer duracao) {
+		this.duracao = duracao;
+	}
+
+	public Integer getPontuacaoMinima() {
+		return pontuacaoMinima;
+	}
+
+	public void setPontuacaoMinima(Integer pontuacaoMinima) {
+		this.pontuacaoMinima = pontuacaoMinima;
 	}
 
 	public String getTitulo() {

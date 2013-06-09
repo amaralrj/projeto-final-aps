@@ -3,13 +3,13 @@
 	<div class="navbar-inner">
 		<div class="container">
 			<c:if test="${usuarioLogado eq null}">
-				<a class="brand" href="mostraHome">Academida dos Aprovados</a>
+				<a class="brand" href="mostraHome">Academia dos Aprovados</a>
 				<a class="btn btn-link" href="mostraHome">Home</a>
 				<a class="btn btn-link" href="novoUsuario">Cadastro</a>
 			</c:if>
 			<c:if test="${usuarioLogado ne null}">
 				<c:if test="${usuarioLogado.perfil == 'ADMIN'}">
-					<a class="brand" href="areaAdmin">Academida dos Aprovados</a>
+					<a class="brand" href="areaAdmin">Academia dos Aprovados</a>
 				</c:if>
 				<c:if test="${usuarioLogado.perfil == 'USER'}">
 					<a class="brand" href="areaUsuario">Academida dos Aprovados</a>
@@ -73,7 +73,7 @@
 			</c:if>
 			<c:if test="${usuarioLogado ne null}">
 				<c:if test="${usuarioLogado.perfil == 'ADMIN'}">
-					<a class="btn btn-link ">Criar Simulado</a>
+					<a href="novoSimulado" class="btn btn-link ">Criar Simulado</a>
 				</c:if>
 				<a class="btn btn-link" href="logout">Logoff</a>
 				<a class="navbar-text pull-right">Bem-vindo

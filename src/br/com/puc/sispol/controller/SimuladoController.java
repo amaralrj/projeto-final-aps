@@ -5,38 +5,37 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.puc.sispol.dao.AreaDeConhecimentoDAO;
-import br.com.puc.sispol.modelo.AreaDeConhecimento;
+import br.com.puc.sispol.dao.SimuladoDAO;
+import br.com.puc.sispol.modelo.Simulado;
 
 @Controller
 public class SimuladoController {
-	private AreaDeConhecimentoDAO dao;
+	private SimuladoDAO dao;
 
 	public SimuladoController() {
-		this.dao = new AreaDeConhecimentoDAO();
+		this.dao = new SimuladoDAO();
 	}
 
-	@RequestMapping("novaAreaDeConhecimento")
+	@RequestMapping("novoSimulado")
 	public String form() {
-		return "area_de_conhecimento/formulario";
+		return "simulado/formulario";
 	}
 
-	@RequestMapping("adicionaAreaDeConhecimento")
-	public ModelAndView adiciona(@Valid AreaDeConhecimento areaDeConhecimento,
+	@RequestMapping("adicionaSimulado")
+	public ModelAndView adiciona(@Valid Simulado simulado,
 			BindingResult result) {
 
-		ModelAndView mv = new ModelAndView("area_de_conhecimento/formulario");
+		ModelAndView mv = new ModelAndView("simulado/formulario");
 		// mv.addObject("tarefas", tarefas);
 
 		if (result.hasFieldErrors()) {
-			System.out.println("ERRO");
 			return mv;
 		}
 
-		dao.adiciona(areaDeConhecimento);
+		dao.adiciona(simulado);
 		mv.addObject("sucesso", 1);
 		return mv;
 	}

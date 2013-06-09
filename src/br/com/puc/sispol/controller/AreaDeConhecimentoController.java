@@ -32,7 +32,6 @@ public class AreaDeConhecimentoController {
 		// mv.addObject("tarefas", tarefas);
 
 		if (result.hasFieldErrors()) {
-			System.out.println("ERRO");
 			return mv;
 		}
 
