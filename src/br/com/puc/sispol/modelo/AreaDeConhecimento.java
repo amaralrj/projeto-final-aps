@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class AreaDeConhecimento {
-	private Long id;
+	private Long codAreaDeConhecimento;
 
 	@NotNull(message = "O Título deve ser preenchido.")
 	@Size(min = 5, message = "O Título deve ser preenchido.")
@@ -20,12 +20,12 @@ public class AreaDeConhecimento {
 	@NotEmpty(message = "O Descrição deve ser preenchido.")
 	private String descricao;
 
-	public Long getId() {
-		return id;
+	public Long getCodAreaDeConhecimento() {
+		return codAreaDeConhecimento;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setCodAreaDeConhecimento(Long codAreaDeConhecimento) {
+		this.codAreaDeConhecimento = codAreaDeConhecimento;
 	}
 
 	public String getDescricao() {

@@ -4,6 +4,11 @@
 <c:import url="../menu.jsp" />
 
 <script type="text/javascript">
+	var optionsAreasDeConhecimento = '';
+	<c:forEach items="${areasDeConhecimento}" var="areaDeConhecimento">
+	optionsAreasDeConhecimento += '<option value="${areaDeConhecimento.codAreaDeConhecimento}">${areaDeConhecimento.titulo}</option>';
+	</c:forEach>
+
 	$('#mais')
 			.live(
 					'click',
@@ -19,7 +24,7 @@
 						//						+ '<td><input type="text" name="item' + next + '" /></td>'
 						//						+ '<td><input type="text" name="quantidade' + next + '" /></td>'
 						//						+ '</tr>');
-
+						//alert();
 						$('#questoes')
 								.append(
 										'<div id="questao_' + next + '" class="control-group">'
@@ -27,13 +32,10 @@
 												+ '<div class="controls controls-row">'
 												+ '<select id="areaDeConhecimento_' + next + '" name="areaDeConhecimento_' + next + '"'
 													+ 'class="input-xlarge span2" default="3" style="">'
-												+ '<option>Direito do Trabalho</option>'
-												+ '<option>Direito Constitucional</option>'
-												+ '<option>Português</option>'
-												+ '<option>Informática</option>'
+												+ optionsAreasDeConhecimento
 												+ '</select> '
 												+ '<label class="span1 control-label">*Número de Questões</label> '
-												+ '<input class="span2" type="text" name="numQuestoes_next" placeholder="Núm. de Questões" />'
+												+ '<input class="span2" type="text" name="numQuestoes_' + next + '" placeholder="Núm. de Questões" />'
 												+ '</div>' + '</div>');
 
 						//armazenando a quantidade de linhas ou registros no elemento hidden
@@ -93,10 +95,10 @@
 						<div class="controls controls-row">
 							<select id="areaDeConhecimento_0" name="areaDeConhecimento_0"
 								class="input-xlarge span2" style="">
-								<option value="0">Direito do Trabalho</option>
-								<option value="1">Direito Constitucional</option>
-								<option value="2">Português</option>
-								<option value="3">Informática</option>
+								<c:forEach items="${areasDeConhecimento}"
+									var="areaDeConhecimento">
+									<option value="${areaDeConhecimento.codAreaDeConhecimento}">${areaDeConhecimento.titulo}</option>
+								</c:forEach>
 							</select> <label class="span1 control-label">*Número de Questões</label> <input
 								class="span2" name="numQuestoes_0" type="text"
 								placeholder="Núm. de Questões" />
