@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `AreaDeConhecimento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `AreaDeConhecimento` (
-  `CodAreaDeConhecimento` int(11) NOT NULL,
+  `CodAreaDeConhecimento` int(11) NOT NULL AUTO_INCREMENT,
   `Descricao` varchar(255) DEFAULT NULL,
   `Titulo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`CodAreaDeConhecimento`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,6 +36,7 @@ CREATE TABLE `AreaDeConhecimento` (
 
 LOCK TABLES `AreaDeConhecimento` WRITE;
 /*!40000 ALTER TABLE `AreaDeConhecimento` DISABLE KEYS */;
+INSERT INTO `AreaDeConhecimento` VALUES (1,'ortografia','Portugues'),(2,'areas da matemática','Matemática');
 /*!40000 ALTER TABLE `AreaDeConhecimento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +126,7 @@ DROP TABLE IF EXISTS `Questao`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Questao` (
-  `CodQuestao` int(11) NOT NULL,
+  `CodQuestao` int(11) NOT NULL AUTO_INCREMENT,
   `Enunciado` text,
   `OpcaoA` varchar(255) DEFAULT NULL,
   `OpcaoB` varchar(255) DEFAULT NULL,
@@ -140,7 +141,7 @@ CREATE TABLE `Questao` (
   KEY `CodConcurso_idx` (`CodConcurso`),
   CONSTRAINT `CodAreaDeConhecimento` FOREIGN KEY (`CodAreaDeConhecimento`) REFERENCES `AreaDeConhecimento` (`CodAreaDeConhecimento`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `CodConcurso` FOREIGN KEY (`CodConcurso`) REFERENCES `Concurso` (`CodConcurso`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,6 +150,7 @@ CREATE TABLE `Questao` (
 
 LOCK TABLES `Questao` WRITE;
 /*!40000 ALTER TABLE `Questao` DISABLE KEYS */;
+INSERT INTO `Questao` VALUES (1,'Responda a questao de Port.',NULL,NULL,NULL,NULL,NULL,NULL,1,NULL),(2,'Responda a questão de Mat.',NULL,NULL,NULL,NULL,NULL,NULL,2,NULL);
 /*!40000 ALTER TABLE `Questao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,14 +220,14 @@ DROP TABLE IF EXISTS `Simulado`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Simulado` (
-  `CodSimulado` int(11) NOT NULL,
+  `CodSimulado` int(11) NOT NULL AUTO_INCREMENT,
   `DataDeRealizacao` date DEFAULT NULL,
-  `Hora de Realizacao` time DEFAULT NULL,
+  `HoraDeRealizacao` time DEFAULT NULL,
   `Duracao` int(11) DEFAULT NULL,
   `PontuacaoMinima` int(11) DEFAULT NULL,
   `Titulo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`CodSimulado`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,34 +236,8 @@ CREATE TABLE `Simulado` (
 
 LOCK TABLES `Simulado` WRITE;
 /*!40000 ALTER TABLE `Simulado` DISABLE KEYS */;
+INSERT INTO `Simulado` VALUES (1,'2013-07-16','16:00:00',2,10,'Enem 2012'),(2,'2013-07-16','16:00:00',2,10,'Enem 2012'),(3,'2013-07-16','16:00:00',2,10,'Portugues'),(4,'2013-07-16','16:00:00',2,10,'Enem 2012'),(5,'2013-07-16','16:00:00',2,10,'Enem 2012'),(6,'2013-07-16','16:00:00',2,10,'Enem 2012'),(7,'2013-07-16','16:00:00',2,10,'Enem 2012'),(8,'2013-07-16','16:00:00',2,10,'Enem 2012'),(9,'2013-07-16','16:00:00',2,10,'Enem 2012'),(10,'2013-07-16','16:00:00',2,10,'sei la'),(11,'2013-07-16','16:00:00',2,10,'Portugues'),(12,'2013-07-16','16:00:00',2,10,'Enem 2012'),(13,'2013-07-16','16:00:00',2,10,'Enem 2012'),(14,'2013-07-16','16:00:00',2,10,'Enem 2012'),(15,'2013-07-16','16:00:00',2,10,'Matemática'),(16,'2013-07-16','16:00:00',2,10,'Enem 2012'),(17,'2013-07-16','16:00:00',2,10,'uyatsdiuh'),(18,'2013-07-16','16:00:00',2,10,'ulmto');
 /*!40000 ALTER TABLE `Simulado` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `SimuladoPossuiAreaDeConhecimento`
---
-
-DROP TABLE IF EXISTS `SimuladoPossuiAreaDeConhecimento`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `SimuladoPossuiAreaDeConhecimento` (
-  `CodAreaDeConhecimento` int(11) NOT NULL,
-  `CodSimulado` int(11) NOT NULL,
-  PRIMARY KEY (`CodAreaDeConhecimento`,`CodSimulado`),
-  KEY `CodSimulado_idx` (`CodSimulado`),
-  KEY `CodAreaDeConhecimento_idx` (`CodAreaDeConhecimento`),
-  CONSTRAINT `CodAreaDeConhecimento_area` FOREIGN KEY (`CodAreaDeConhecimento`) REFERENCES `AreaDeConhecimento` (`CodAreaDeConhecimento`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `CodSimulado_area` FOREIGN KEY (`CodSimulado`) REFERENCES `Simulado` (`CodSimulado`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `SimuladoPossuiAreaDeConhecimento`
---
-
-LOCK TABLES `SimuladoPossuiAreaDeConhecimento` WRITE;
-/*!40000 ALTER TABLE `SimuladoPossuiAreaDeConhecimento` DISABLE KEYS */;
-/*!40000 ALTER TABLE `SimuladoPossuiAreaDeConhecimento` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -272,12 +248,12 @@ DROP TABLE IF EXISTS `SimuladoPossuiQuestao`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `SimuladoPossuiQuestao` (
-  `CodQuestão` int(11) NOT NULL,
+  `CodQuestao` int(11) NOT NULL,
   `CodSimulado` int(11) NOT NULL,
-  PRIMARY KEY (`CodQuestão`,`CodSimulado`),
+  PRIMARY KEY (`CodQuestao`,`CodSimulado`),
   KEY `CodSimulado_idx` (`CodSimulado`),
-  KEY `CodQuestao_idx` (`CodQuestão`),
-  CONSTRAINT `CodQuestao_questao` FOREIGN KEY (`CodQuestão`) REFERENCES `Questao` (`CodQuestao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `CodQuestao_idx` (`CodQuestao`),
+  CONSTRAINT `CodQuestao_questao` FOREIGN KEY (`CodQuestao`) REFERENCES `Questao` (`CodQuestao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `CodSimulado_questao` FOREIGN KEY (`CodSimulado`) REFERENCES `Simulado` (`CodSimulado`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -288,6 +264,7 @@ CREATE TABLE `SimuladoPossuiQuestao` (
 
 LOCK TABLES `SimuladoPossuiQuestao` WRITE;
 /*!40000 ALTER TABLE `SimuladoPossuiQuestao` DISABLE KEYS */;
+INSERT INTO `SimuladoPossuiQuestao` VALUES (1,18),(2,18);
 /*!40000 ALTER TABLE `SimuladoPossuiQuestao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -299,7 +276,7 @@ DROP TABLE IF EXISTS `Usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Usuario` (
-  `CodUsuario` int(11) NOT NULL,
+  `CodUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `Nome` varchar(255) DEFAULT NULL,
   `Sobrenome` varchar(255) DEFAULT NULL,
   `DataDeNascimento` date DEFAULT NULL,
@@ -309,7 +286,7 @@ CREATE TABLE `Usuario` (
   `ReceberNotificacoes` tinyint(1) DEFAULT NULL,
   `Perfil` set('ADMIN','USER') NOT NULL,
   PRIMARY KEY (`CodUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -318,7 +295,7 @@ CREATE TABLE `Usuario` (
 
 LOCK TABLES `Usuario` WRITE;
 /*!40000 ALTER TABLE `Usuario` DISABLE KEYS */;
-INSERT INTO `Usuario` VALUES (0,'Pedro','Licio','0000-00-00','Superior','amaralrj@gmail.com','123',NULL,'ADMIN');
+INSERT INTO `Usuario` VALUES (1,'Pedro','Licio','0000-00-00','Superior','amaralrj@gmail.com','123',NULL,'ADMIN'),(2,'Anderson','Santos','0000-00-00','Superior','asantos35@gmail.com','123',NULL,'USER');
 /*!40000 ALTER TABLE `Usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -357,4 +334,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-02 19:48:14
+-- Dump completed on 2013-06-15 14:25:28
