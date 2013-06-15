@@ -54,6 +54,7 @@ public class LoginController {
 
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
+		System.out.println("Deslogando...");
 		session.invalidate();
 		return "redirect:loginForm";
 	}

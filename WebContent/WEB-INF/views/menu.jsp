@@ -63,8 +63,10 @@
 								Estatísticas</a></li>
 						<li><a href="realizar_simulado_oficial.html">Realizar
 								Simulado Previamente Inscrito</a></li>
-						<li><a href="inscrever_simulado.html">Efetuar inscrição
-								em Simulado</a></li>
+						<c:if test="${usuarioLogado.perfil == 'USER'}">
+							<li><a href="listaSimuladosAguardandoInscricao">Efetuar
+									inscrição em Simulado</a></li>
+						</c:if>
 					</c:if>
 				</ul>
 			</div>

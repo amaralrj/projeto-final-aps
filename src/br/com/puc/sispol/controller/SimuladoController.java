@@ -76,4 +76,10 @@ public class SimuladoController {
 		mv.addObject("sucesso", 1);
 		return mv;
 	}
+	
+	@RequestMapping("listaSimuladosAguardandoInscricao")
+	public String listaSimuladosAguardandoInscricao() {
+		
+		return "simulado/lista_simulados_aguardando_inscricao";
+	}
 }

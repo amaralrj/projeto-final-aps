@@ -14,15 +14,24 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 		if (uri.endsWith("loginForm") || uri.endsWith("efetuaLogin")
 				|| uri.contains("resources") || uri.contains("mostraHome")
 				|| uri.contains("novoUsuario")
-				|| uri.contains("AreaDeConhecimento")
-				|| uri.contains("Simulado")) {
+
+		) {
+			System.out.println("Carrega como usuário não logado");
 			return true;
 		}
-		if (request.getSession().getAttribute("usuarioLogado") != null) {
+		if ((request.getSession().getAttribute("usuarioLogado") != null)) {
+			System.out.println("Carrega como usuário logado");
 			return true;
 		}
+		System.out.println("Redireciana para a Home");
 		response.sendRedirect("mostraHome");
 		return false;
 	}
-
+	
+	/*
+	&& (uri.contains("Simulado")
+	|| uri.contains("AreaDeConhecimento") || uri
+	.contains("logount"))
+	
+	*/
 }
