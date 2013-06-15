@@ -4,9 +4,9 @@
 <c:import url="../menu.jsp" />
 
 <script type="text/javascript">
-	var optionsAreasDeConhecimento = '';
+	var options = "";
 	<c:forEach items="${areasDeConhecimento}" var="areaDeConhecimento">
-	optionsAreasDeConhecimento += '<option value="${areaDeConhecimento.codAreaDeConhecimento}">${areaDeConhecimento.titulo}</option>';
+	options  += '<option value="${areaDeConhecimento.codAreaDeConhecimento}">${areaDeConhecimento.titulo}</option>';
 	</c:forEach>
 
 	$('#mais')
@@ -15,39 +15,33 @@
 					function() {
 
 						//recuperando o próximo numero da linha
-						var next = $('#questoes').children('div').length + 1;
-
-						//inserindo formulário
-						//$('#questoes')
-						//		.append(
-						//				'<tr>'
-						//						+ '<td><input type="text" name="item' + next + '" /></td>'
-						//						+ '<td><input type="text" name="quantidade' + next + '" /></td>'
-						//						+ '</tr>');
-						//alert();
+						var next = $('#questoes').children('div').length;
+						
+						fields = '<div id="questao_' + next + '" class="control-group">'
+						+ '<label class="control-label">*Área de Conhecimento</label>'
+						+ '<div class="controls controls-row">'
+						+ '<select id="areaDeConhecimento[' + next + ']" name="areaDeConhecimento[' + next + ']" class="input-xlarge span2" >'
+							+ options
+						+ '</select> '
+						+ '<label class="span1 control-label">*Número de Questões</label> '
+						+ '<input class="span2" type="text" name="numQuestoes[' + next + ']" placeholder="Núm. de Questões" />'
+						+ '</div>' 
+					+ '</div>';
+					
 						$('#questoes')
-								.append(
-										'<div id="questao_' + next + '" class="control-group">'
-												+ '<label class="control-label">*Área de Conhecimento</label>'
-												+ '<div class="controls controls-row">'
-												+ '<select id="areaDeConhecimento_' + next + '" name="areaDeConhecimento_' + next + '"'
-													+ 'class="input-xlarge span2" default="3" style="">'
-												+ optionsAreasDeConhecimento
-												+ '</select> '
-												+ '<label class="span1 control-label">*Número de Questões</label> '
-												+ '<input class="span2" type="text" name="numQuestoes_' + next + '" placeholder="Núm. de Questões" />'
-												+ '</div>' + '</div>');
-
+								.append( fields	);
+						//next = $('#questoes').children('div').length;
 						//armazenando a quantidade de linhas ou registros no elemento hidden
-						$(':hidden').val(next);
+						//$(':hidden').val(next);
 
 						return false;
 					});
 
 	$('#remove').live('click', function() {
 		//recuperando o próximo numero da linha
-		var next = $('#questoes').children('div').length;
+		var next = $('#questoes').children('div').length-1;
 		$('#questao_' + next).remove();
+		$(':hidden').val(next);
 		return false;
 	});
 </script>
@@ -93,14 +87,13 @@
 					<div class="control-group">
 						<label class="control-label">*Área de Conhecimento</label>
 						<div class="controls controls-row">
-							<select id="areaDeConhecimento_0" name="areaDeConhecimento_0"
-								class="input-xlarge span2" style="">
+							<select id="areaDeConhecimento[0]" name="areaDeConhecimento[0]" class="input-xlarge span2" >
 								<c:forEach items="${areasDeConhecimento}"
 									var="areaDeConhecimento">
 									<option value="${areaDeConhecimento.codAreaDeConhecimento}">${areaDeConhecimento.titulo}</option>
 								</c:forEach>
 							</select> <label class="span1 control-label">*Número de Questões</label> <input
-								class="span2" name="numQuestoes_0" type="text"
+								class="span2" name="numQuestoes[0]" type="text"
 								placeholder="Núm. de Questões" />
 						</div>
 					</div>

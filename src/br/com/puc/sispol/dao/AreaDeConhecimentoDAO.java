@@ -63,6 +63,7 @@ public class AreaDeConhecimentoDAO {
 		AreaDeConhecimento areaDeConhecimento = new AreaDeConhecimento();
 
 		// popula o objeto areaDeConhecimento
+		
 		areaDeConhecimento.setCodAreaDeConhecimento(rs.getLong("CodAreaDeConhecimento"));
 		areaDeConhecimento.setTitulo(rs.getString("Titulo"));
 		areaDeConhecimento.setDescricao(rs.getString("Descricao"));

@@ -1,12 +1,9 @@
 package br.com.puc.sispol.modelo;
 
-import java.util.Calendar;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class AreaDeConhecimento {
 	private Long codAreaDeConhecimento;

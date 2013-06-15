@@ -1,8 +1,10 @@
 package br.com.puc.sispol.modelo;
 
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -13,6 +15,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Simulado {
 	private Long codSimulado;
 	
+	private List<Questao> questoes;
+	
+	public List<Questao> getQuestoes() {
+		return questoes;
+	}
+
+	public void setQuestoes(List<Questao> questoes) {
+		this.questoes = questoes;
+	}
+
 	@NotNull(message = "A Data deve ser preenchida.")
 	@DateTimeFormat(pattern="dd/MM/YYYY")
 	private Calendar dataDeRealizacao;
