@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:import url="../cabecalho.jsp" />
 <c:import url="../menu.jsp" />
 <div class="container-fluid">
@@ -44,34 +45,16 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1</td>
-					<td>Simulado para Banco do Brasil-Tecnico Administrativo</td>
-					<td>20/10/2012</td>
-					<td><a href="#" role="button" class="btn btn-small">Inscrever
-							no Simulado</a></td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Simulado de Matemática Financeira</td>
-					<td>20/10/2012</td>
-					<td><a href="#" role="button" class="btn btn-small">Inscrever
-							no Simulado</a></td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Simulado de Direito do Trabalho</td>
-					<td>20/10/2012</td>
-					<td><a href="#" role="button" class="btn btn-small">Inscrever
-							no Simulado</a></td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>Simulado de Português</td>
-					<td>20/10/2012</td>
-					<td><a href="#" role="button" class="btn btn-small">Inscrever
-							no Simulado</a></td>
-				</tr>
+				<c:forEach items="${simulados}" var="simulado">
+					<tr>
+						<td>${simulado.codSimulado}</td>
+						<td>${simulado.titulo}</td>
+						<td><fmt:formatDate value="${simulado.dataDeRealizacao.time}"
+						pattern="dd/MM/yyyy" /></td>
+						<td><a href="#" role="button" class="btn btn-small">Inscrever
+								no Simulado</a></td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

@@ -78,8 +78,8 @@ public class SimuladoController {
 	}
 	
 	@RequestMapping("listaSimuladosAguardandoInscricao")
-	public String listaSimuladosAguardandoInscricao() {
-		
+	public String listaSimuladosAguardandoInscricao(Model model) {
+		model.addAttribute("simulados", daoSimulado.listaAguardandoInscricao());
 		return "simulado/lista_simulados_aguardando_inscricao";
 	}
 }

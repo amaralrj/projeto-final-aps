@@ -6,10 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 import br.com.puc.sispol.ConnectionFactory;
 import br.com.puc.sispol.modelo.Questao;
 import br.com.puc.sispol.modelo.Simulado;
+import br.com.puc.sispol.modelo.Tarefa;
 
 public class SimuladoDAO {
 	private final Connection connection;
@@ -29,7 +33,8 @@ public class SimuladoDAO {
 		long codSimulado = 0;
 		try {
 
-			stmt = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			stmt = connection.prepareStatement(sql,
+					Statement.RETURN_GENERATED_KEYS);
 			stmt.setDate(1, simulado.getDataDeRealizacao() != null ? new Date(
 					simulado.getDataDeRealizacao().getTimeInMillis()) : null);
 			stmt.setString(2, simulado.getHoraDeRealizacao());
@@ -38,22 +43,21 @@ public class SimuladoDAO {
 			stmt.setString(5, simulado.getTitulo());
 			stmt.executeUpdate();
 			rs = stmt.getGeneratedKeys();
-            if(rs != null && rs.next()){
-                System.out.println("Generated CodSimulado: "+rs.getInt(1));
-                codSimulado = (long)rs.getInt(1);
-                
-            }
+			if (rs != null && rs.next()) {
+				System.out.println("Generated CodSimulado: " + rs.getInt(1));
+				codSimulado = (long) rs.getInt(1);
+
+			}
 		} catch (SQLException e) {
-			
+
 			throw new RuntimeException(e);
 		}
-		
-		
+
 		sql = "insert into SimuladoPossuiQuestao (CodQuestao, CodSimulado) values (?,?)";
-		
-		for(Questao questao: simulado.getQuestoes()){
+
+		for (Questao questao : simulado.getQuestoes()) {
 			try {
-				
+
 				stmt = connection.prepareStatement(sql);
 				stmt.setLong(1, questao.getCodQuestao());
 				stmt.setLong(2, codSimulado);
@@ -63,10 +67,49 @@ public class SimuladoDAO {
 				throw new RuntimeException(e);
 			}
 		}
-		
 
 	}
 
+	public List<Simulado> listaAguardandoInscricao() {
 
+		try {
+			List<Simulado> simulados = new ArrayList<Simulado>();
+			PreparedStatement stmt = this.connection
+					.prepareStatement("select * from Simulado where DataDeRealizacao > current_date()");
+
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				// adiciona a tarefa na lista
+				simulados.add(populaSimulado(rs));
+			}
+
+			rs.close();
+			stmt.close();
+
+			return simulados;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+	
+	private Simulado populaSimulado(ResultSet rs) throws SQLException {
+		Simulado simulado = new Simulado();
+
+		// popula o objeto tarefa
+		simulado.setCodSimulado(rs.getLong("CodSimulado"));
+		simulado.setTitulo(rs.getString("Titulo"));
+		simulado.setHoraDeRealizacao(rs.getString("HoraDeRealizacao"));
+		
+		// popula a data de finalizacao da tarefa, fazendo a conversao
+		Date data = rs.getDate("DataDeRealizacao");
+		if (data != null) {
+			Calendar dataDerealizacao = Calendar.getInstance();
+			dataDerealizacao.setTime(data);
+			simulado.setDataDeRealizacao(dataDerealizacao);
+		}
+		return simulado;
+	}
 
 }
