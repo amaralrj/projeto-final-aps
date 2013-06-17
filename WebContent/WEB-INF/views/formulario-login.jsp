@@ -12,7 +12,7 @@
 		<form:errors path="*" />
 		<form action="efetuaLogin" class="form-signin" method="POST">
 			<legend>
-				<h2 class="form-signin-heading">Favor logar-se</h2>
+				<h2 class="form-signin-heading">Favor efetuar login</h2>
 			</legend>
 			<div class="control-group">
 				<div class="controls">
