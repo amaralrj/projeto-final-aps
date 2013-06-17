@@ -191,7 +191,7 @@ DROP TABLE IF EXISTS `Resultado`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Resultado` (
-  `CodResultado` int(11) NOT NULL,
+  `CodResultado` int(11) NOT NULL AUTO_INCREMENT,
   `NotaDoSimulado` int(11) DEFAULT NULL,
   `CodSimulado` int(11) DEFAULT NULL,
   `CodUsuario` int(11) DEFAULT NULL,
@@ -200,7 +200,7 @@ CREATE TABLE `Resultado` (
   KEY `CodSimulado_idx` (`CodSimulado`),
   CONSTRAINT `CodSimulado` FOREIGN KEY (`CodSimulado`) REFERENCES `Simulado` (`CodSimulado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `CodUsuario` FOREIGN KEY (`CodUsuario`) REFERENCES `Usuario` (`CodUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -209,6 +209,7 @@ CREATE TABLE `Resultado` (
 
 LOCK TABLES `Resultado` WRITE;
 /*!40000 ALTER TABLE `Resultado` DISABLE KEYS */;
+INSERT INTO `Resultado` VALUES (1,NULL,1,2);
 /*!40000 ALTER TABLE `Resultado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -334,4 +335,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-15 14:25:28
+-- Dump completed on 2013-06-16 22:08:25
