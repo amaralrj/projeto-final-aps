@@ -112,4 +112,27 @@ public class SimuladoDAO {
 		return simulado;
 	}
 
+	public void efetuaInscricao(Long codSimulado, Long codUsuario) {
+
+			if (codSimulado == null) {
+				throw new IllegalStateException("Código do Simulado não deve ser nulo.");
+			}
+			
+			if (codUsuario == null) {
+				throw new IllegalStateException("Código do Usuário não deve ser nulo.");
+			}
+
+			String sql = "INSERT INTO Resultado (CodSimulado, CodUsuario) VALUES (?,?)";
+			PreparedStatement stmt;
+			try {
+				stmt = connection.prepareStatement(sql);
+				stmt.setLong(1, codSimulado);
+				stmt.setLong(2, codUsuario);
+				stmt.execute();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		
+	}
+
 }

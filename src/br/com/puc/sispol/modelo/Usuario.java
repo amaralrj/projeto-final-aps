@@ -6,7 +6,16 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class Usuario {
 	
+	private Long codUsuario;
 	
+	public Long getCodUsuario() {
+		return codUsuario;
+	}
+
+	public void setCodUsuario(Long codUsuario) {
+		this.codUsuario = codUsuario;
+	}
+
 	@NotEmpty(message = "O e-mail deve ser preenchido.")
 	@NotNull(message = "O e-mail deve ser preenchido.")
 	private String email;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -76,10 +77,16 @@ public class SimuladoController {
 		mv.addObject("sucesso", 1);
 		return mv;
 	}
-	
+
 	@RequestMapping("listaSimuladosAguardandoInscricao")
 	public String listaSimuladosAguardandoInscricao(Model model) {
 		model.addAttribute("simulados", daoSimulado.listaAguardandoInscricao());
 		return "simulado/lista_simulados_aguardando_inscricao";
+	}
+
+	@RequestMapping("efetuaInscricaoSimulado")
+	public void inscreve(Long codSimulado, Long codUsuario, HttpServletResponse response) {
+		daoSimulado.efetuaInscricao(codSimulado, codUsuario);
+		response.setStatus(200);
 	}
 }

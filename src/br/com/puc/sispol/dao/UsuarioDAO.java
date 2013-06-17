@@ -72,6 +72,7 @@ public class UsuarioDAO {
 		Usuario usuario = new Usuario();
 
 		// popula o objeto tarefa
+		usuario.setCodUsuario(rs.getLong("CodUsuario"));
 		usuario.setEmail(rs.getString("email"));
 		usuario.setSenha(rs.getString("senha"));
 		usuario.setPerfil(rs.getString("perfil"));

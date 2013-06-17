@@ -3,6 +3,13 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:import url="../cabecalho.jsp" />
 <c:import url="../menu.jsp" />
+<script type="text/javascript">
+		function efetuaInscricaoSimulado(codSimulado,codUsuario) {
+			$.post("efetuaInscricaoSimulado", {"codSimulado" : codSimulado, "codUsuario" : codUsuario}, function(resposta) {
+				$("#simulado_"+codSimulado).html(resposta);
+			});
+		}
+	</script>
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="pull-left span1">
@@ -50,9 +57,10 @@
 						<td>${simulado.codSimulado}</td>
 						<td>${simulado.titulo}</td>
 						<td><fmt:formatDate value="${simulado.dataDeRealizacao.time}"
-						pattern="dd/MM/yyyy" /></td>
-						<td><a href="#" role="button" class="btn btn-small">Inscrever
-								no Simulado</a></td>
+								pattern="dd/MM/yyyy" /></td>
+						<td id="simulado_${simulado.codSimulado}"><a href="#" role="button"
+							onclick="efetuaInscricaoSimulado(${simulado.codSimulado},${usuarioLogado.codUsuario})"
+							class="btn btn-small">Inscrever no Simulado</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
