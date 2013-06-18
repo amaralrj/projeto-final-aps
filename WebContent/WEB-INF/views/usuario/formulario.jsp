@@ -35,7 +35,7 @@
 						<label class="control-label">*Nome</label>
 						<div class="controls">
 							<input id="nomeusr" name="nomeusr" type="text"
-								placeholder="Nome do usuário" class="input-xlarge" required="">
+								placeholder="Nome do usuário" class="input-xlarge">
 						</div>
 					</div>
 					<!-- Text input-->
@@ -44,7 +44,7 @@
 						<div class="controls">
 							<input id="sobrenomeusr" name="sobrenomeusr" type="text"
 								placeholder="Sobrenome do usuário" class="input-xlarge"
-								required="">
+								>
 						</div>
 					</div>
 					<!-- Text input-->
@@ -53,7 +53,7 @@
 						<div class="controls">
 							<input id="emailusr" name="emailusr" type="text"
 								placeholder="Endereço de e-mail" class="input-xlarge"
-								required="">
+								>
 						</div>
 					</div>
 					<!-- Text input-->
@@ -62,7 +62,7 @@
 						<div class="controls">
 							<input id="datanascimentousr" name="datanascimentousr"
 								type="text" placeholder="Data de nascimento"
-								class="input-xlarge" required="">
+								class="input-xlarge">
 						</div>
 					</div>
 					<!-- Select Basic -->
@@ -85,7 +85,7 @@
 						<label class="control-label">*Senha</label>
 						<div class="controls">
 							<input id="senha1usr" name="senha1usr" type="password"
-								placeholder="Senha" class="input-xlarge" required="">
+								placeholder="Senha" class="input-xlarge" >
 						</div>
 					</div>
 					<!-- Password input-->
@@ -94,7 +94,7 @@
 						<div class="controls">
 							<input id="senha2usr" name="senha2usr" type="password"
 								placeholder="Confirme a sua senha" class="input-xlarge"
-								required="">
+								>
 						</div>
 					</div>
 					<!-- Multiple Checkboxes -->
