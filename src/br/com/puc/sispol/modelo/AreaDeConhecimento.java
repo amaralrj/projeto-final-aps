@@ -9,7 +9,7 @@ public class AreaDeConhecimento {
 	private Long codAreaDeConhecimento;
 
 	@NotNull(message = "O Título deve ser preenchido.")
-	@Size(min = 5, message = "O Título deve ser preenchido.")
+	@Size(min = 5, message = "O Título deve ser preenchido .")
 	@NotEmpty(message = "O Título deve ser preenchido.")
 	private String titulo;
 	
