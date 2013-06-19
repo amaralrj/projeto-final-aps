@@ -14,7 +14,7 @@ public class AreaDeConhecimento {
 	private String titulo;
 	
 	@NotNull(message = "A Descrição deve ser preenchida.")
-	@NotEmpty(message = "O Descrição deve ser preenchido.")
+	@NotEmpty(message = "A Descrição deve ser preenchida.")
 	private String descricao;
 
 	public Long getCodAreaDeConhecimento() {
