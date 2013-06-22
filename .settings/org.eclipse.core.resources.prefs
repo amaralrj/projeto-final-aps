@@ -1,4 +1,8 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/views/cabecalho.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/menu.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/realizar_simulado_inscrito/formulario.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/rodape.jsp=UTF-8
 encoding//src/br/com/puc/sispol/modelo/AreaDeConhecimento.java=UTF-8
+encoding//src/br/com/puc/sispol/modelo/AreaDeConhecimentoQuantidade.java=UTF-8
 encoding/<project>=UTF-8

@@ -19,14 +19,14 @@
 						Consultar <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="consultar_usuario.html">Consultar Usuário</a></li>
+						<li><a href="consultar_usuario.html">Consultar Usuï¿½rio</a></li>
 						<li><a href="consultar_area_de_conhecimento.html">Consultar
-								Área de Conhecimento</a></li>
+								ï¿½rea de Conhecimento</a></li>
 						<li><a href="consultar_organizadora.html">Consultar
 								Organizadora</a></li>
 						<li><a href="consultar_concurso.html">Consultar Concurso</a></li>
-						<li><a href="consultar_questao.html">Consultar Questão</a></li>
-						<li><a href="consultar_noticia.html">Consultar Notícia</a></li>
+						<li><a href="consultar_questao.html">Consultar Questï¿½o</a></li>
+						<li><a href="consultar_noticia.html">Consultar Notï¿½cia</a></li>
 					</ul>
 				</div>
 				<div class="btn-group">
@@ -34,17 +34,17 @@
 						Incluir <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="incluir_usuario.html">Incluir Usuário</a></li>
+						<li><a href="incluir_usuario.html">Incluir Usuï¿½rio</a></li>
 
 						<c:if test="${usuarioLogado.perfil == 'ADMIN'}">
-							<li><a href="novaAreaDeConhecimento">Incluir Área de
+							<li><a href="novaAreaDeConhecimento">Incluir ï¿½rea de
 									Conhecimento</a></li>
 						</c:if>
 						<li><a href="incluir_organizadora.html">Incluir
 								Organizadora</a></li>
 						<li><a href="incluir_concurso.html">Incluir Concurso</a></li>
-						<li><a href="incluir_questao.html">Incluir Questão</a></li>
-						<li><a href="incluir_noticia.html">Incluir Notícia</a></li>
+						<li><a href="incluir_questao.html">Incluir Questï¿½o</a></li>
+						<li><a href="incluir_noticia.html">Incluir Notï¿½cia</a></li>
 					</ul>
 				</div>
 			</c:if>
@@ -54,18 +54,19 @@
 				<ul class="dropdown-menu">
 					<li><a href="#">Consultar Gabarito</a></li>
 					<li><a href="#">Simulado Passado</a></li>
-					<li><a href="#">Classificação Geral</a></li>
-					<li><a href="#">Classificação do Simulado</a></li>
+					<li><a href="#">Classificaï¿½ï¿½o Geral</a></li>
+					<li><a href="#">Classificaï¿½ï¿½o do Simulado</a></li>
 					<li><a href="listaTarefas">Lista de tarefas</a></li>
 					<c:if test="${usuarioLogado ne null}">
 						<li class="divider"></li>
 						<li><a href="realizar_simulado_oficial.html">Consultar
-								Estatísticas</a></li>
-						<li><a href="realizar_simulado_oficial.html">Realizar
-								Simulado Previamente Inscrito</a></li>
+								Estatï¿½sticas</a></li>
 						<c:if test="${usuarioLogado.perfil == 'USER'}">
+							<li><a href="realizaSimulado?codUsuario=${usuarioLogado.codUsuario}">Realizar
+									Simulado Previamente Inscrito</a></li>
+
 							<li><a href="listaSimuladosAguardandoInscricao">Efetuar
-									inscrição em Simulado</a></li>
+									inscriï¿½ï¿½o em Simulado</a></li>
 						</c:if>
 					</c:if>
 				</ul>
