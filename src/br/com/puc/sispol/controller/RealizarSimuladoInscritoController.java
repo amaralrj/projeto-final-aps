@@ -28,6 +28,7 @@ public class RealizarSimuladoInscritoController {
 			// Se não mostra msg nao existe simulado inscrito
 			Simulado simulado = daoSimulado
 					.buscaSimuladoASerRealizado(codUsuario);
+			
 			model.addAttribute("simulado", simulado);
 			List<AreaDeConhecimentoQuantidade> lista = new ArrayList<AreaDeConhecimentoQuantidade>();
 			lista = daoSimulado.buscaAreasDeConhecimentoDoSimulado(simulado);
@@ -36,6 +37,9 @@ public class RealizarSimuladoInscritoController {
 				System.out.println("area de co: " + a.getTitulo());
 			}
 			model.addAttribute("areasDeConhecimento", lista);
+			
+			
+			
 			return "realizar_simulado_inscrito/formulario";
 		} catch (Exception e) {
 			return "realizar_simulado_inscrito/falha";

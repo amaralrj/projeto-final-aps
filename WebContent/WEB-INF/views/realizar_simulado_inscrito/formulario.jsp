@@ -8,11 +8,27 @@
 	<script type="text/javascript" src="resources/js/jquery.countdown.js"></script>
 
 	<script type="text/javascript">
+		var dataDeRealizacao = '<fmt:formatDate value="${simulado.dataDeRealizacao.time}" pattern="dd/MM/yyyy" />';
+		var arraydataDeRealizacao = dataDeRealizacao.split('/');
+		//alert('Ano: '+arraydataDeRealizacao[2]);
+		//alert('Mês: '+arraydataDeRealizacao[1]);
+		//alert('Dia: '+arraydataDeRealizacao[0]);
+		var horaDeRealizacao = '${simulado.horaDeRealizacao}';
+		var arrayhoraDeRealizacao = horaDeRealizacao.split(':');
+		//alert('Hora: '+arrayhoraDeRealizacao[0]);
+		//alert('Minuto: '+arrayhoraDeRealizacao[1]);
+
 		$(function() {
-			$('#cronometro').countdown({
-				since : new Date(2013, 6 - 1, 22, 19),
-				compact : true
-			});
+			$('#cronometro').countdown(
+					{
+
+						since : new Date(arraydataDeRealizacao[2],
+								arraydataDeRealizacao[1] - 1,
+								arraydataDeRealizacao[0],
+								arrayhoraDeRealizacao[0],
+								arrayhoraDeRealizacao[1]),
+						compact : true
+					});
 		});
 	</script>
 
@@ -20,15 +36,7 @@
 
 	<div class="container-fluid">
 		<span class="label label-info pull-right"><i
-			class="icon-search icon-time"></i> Tempo decorrido:	<div id="cronometro" style=""></div></span>
-		<div class="row-fluid">
-			<div class="pull-left span1"></div>
-			<div class="pull-left span7">
-				<div class="row-fluid">
-					<div class="span4"></div>
-				</div>
-			</div>
-		</div>
+			class="icon-search icon-time"></i> Tempo decorrido:&nbsp;<div id="cronometro" style="float:right"></div></span>
 	</div>
 	</div>
 	<div class="row">
