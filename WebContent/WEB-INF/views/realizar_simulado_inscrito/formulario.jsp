@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <c:import url="../cabecalho.jsp" />
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 </head>
 <body>
 	<c:import url="../menu.jsp" />
@@ -36,7 +35,8 @@
 
 	<div class="container-fluid">
 		<span class="label label-info pull-right"><i
-			class="icon-search icon-time"></i> Tempo decorrido:&nbsp;<div id="cronometro" style="float:right"></div></span>
+			class="icon-search icon-time"></i> Tempo decorrido:&nbsp;
+			<div id="cronometro" style="float: right"></div></span>
 	</div>
 	</div>
 	<div class="row">
@@ -99,61 +99,52 @@
 					<b><h4 class="pull-left">Questões</h4></b>
 				</caption>
 				<tbody>
-					<tr>
-						<td><b>Questão 1:</b>
-							<p></p></td>
-					</tr>
-					<tr>
-						<td>O conceito de Suíte de Plataforma de Aplicação
-							(Application Platform Suite - APS) está relacionado à integração
-							de aplicações. O Java CAPS é a solução de APS para Java e possui
-							componentes de tempo de projeto (design) e de tempo de execução
-							(run-time). O Java CAPS oferece diversas potencialidades, EXCETO:
-							<p></p>
-						</td>
-					</tr>
-					<tr>
-						<td><label class="radio"> <span
-								class="badge badge-info">A</span> <input type="radio"
-								name="optionsRadios" id="optionsRadios1" value="option1"
-								checked="" /> disponibilizar um ambiente de desenvolvimento
-								integrado que realiza o monitoramento e o gerenciamento do
-								ambiente de execução.
-						</label></td>
-					</tr>
-					<tr>
-						<td><label class="radio"> <span
-								class="badge badge-info">B</span> <input type="radio"
-								name="optionsRadios" id="optionsRadios1" value="option1" />
-								possuir o componente logicalhost, responsável pela hospedagem
-								das aplicações nele implantadas.
-						</label></td>
-					</tr>
-					<tr>
-						<td><label class="radio"> <span
-								class="badge badge-info">C</span> <input type="radio"
-								name="optionsRadios" id="optionsRadios1" value="option1" />
-								possuir um repositório que armazena os artefatos produzidos a
-								tempo de projeto e que fornece um sistema de controle de
-								versões.
-						</label></td>
-					</tr>
-					<tr>
-						<td><label class="radio"> <span
-								class="badge badge-info">D</span> <input type="radio"
-								name="optionsRadios" id="optionsRadios1" value="option1" />
-								propiciar a integração de sistemas legados (legacy systems)
-								através de adaptadores (adapters).
-						</label></td>
-					</tr>
-					<tr>
-						<td><label class="radio"> <span
-								class="badge badge-info">E</span> <input type="radio"
-								name="optionsRadios" id="optionsRadios1" value="option1" />
-								prover suporte à utilização de diversos servidores de aplicação,
-								cada um dos quais representando um contêiner Java EE.
-						</label></td>
-					</tr>
+					<c:forEach items="${questoes}" var="questao" varStatus="rowCounter">
+						<tr>
+							<td><b>Questão ${rowCounter.count}:</b>
+								<p></p></td>
+						</tr>
+						<tr>
+							<td>${questao.enunciado}
+								<p></p>
+							</td>
+						</tr>
+						<tr>
+							<td><label class="radio"> <span
+									class="badge badge-info">A</span> <input type="radio"
+									name="questao[]" id="questao[]" value="A"
+									checked="" /> ${questao.opcaoA}
+							</label></td>
+						</tr>
+						<tr>
+							<td><label class="radio"> <span
+									class="badge badge-info">B</span> <input type="radio"
+									name="questao[]" id="questao[]" value="B" />${questao.opcaoB}
+							</label></td>
+						</tr>
+						<tr>
+							<td><label class="radio"> <span
+									class="badge badge-info">C</span> <input type="radio"
+									name="questao[]" id="questao[]" value="C" />
+									${questao.opcaoC}
+							</label></td>
+						</tr>
+						<tr>
+							<td><label class="radio"> <span
+									class="badge badge-info">D</span> <input type="radio"
+									name="questao[]" id="questao[]" value="D" />
+									${questao.opcaoD}
+							</label></td>
+						</tr>
+						<tr>
+							<td><label class="radio"> <span
+									class="badge badge-info">E</span> <input type="radio"
+									name="questao[]" id="questao[]" value="E" />
+									${questao.opcaoE}
+							</label></td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+					</c:forEach>
 					<tr>
 						<td><br>
 							<button class="btn" type="button">Encerrar Simulado</button></td>

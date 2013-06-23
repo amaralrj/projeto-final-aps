@@ -194,7 +194,7 @@ public class SimuladoDAO {
 
 			while (rs.next()) {
 				AreaDeConhecimentoQuantidade areaDeConhecimentoQuantidade = new AreaDeConhecimentoQuantidade();
-				System.out.println("quantas vezes?");
+				
 				// popula o objeto tarefa
 				areaDeConhecimentoQuantidade.setTitulo(rs.getString("Titulo"));
 				areaDeConhecimentoQuantidade.setQuantidade(rs.getInt("total"));
@@ -204,6 +204,54 @@ public class SimuladoDAO {
 			rs.close();
 			stmt.close();
 			return areasDeConhecimentoQuantidade;
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public List<Questao> buscaQuestoesDoSimulado(Simulado simulado) {
+		System.out.println("Chamando buscaQuestoesDoSimulado()");
+		try {
+			List<Questao> questoes = new ArrayList<Questao>();
+			PreparedStatement stmt = this.connection.prepareStatement("	SELECT "
+					+ " q.CodQuestao, " 
+					+ " q.Enunciado, "
+					+ " q.OpcaoA, "
+					+ " q.OpcaoB, "
+					+ " q.OpcaoC, "
+					+ " q.OpcaoD, "
+					+ "   q.OpcaoE "
+					+ " FROM "
+					+ " 	sispol.SimuladoPossuiQuestao AS s "
+					+ "		INNER JOIN sispol.Questao AS q "
+					+ "			ON (s.CodQuestao = q.codQuestao) "
+					+ " 	INNER JOIN sispol.AreaDeConhecimento AS a "
+					+ " 		ON (q.CodAreaDeConhecimento = a.CodAreaDeConhecimento) "
+					+ " WHERE "
+					+ "		s.CodSimulado = ? "
+					+ " ORDER BY a.Titulo ");
+			stmt.setLong(1, simulado.getCodSimulado());
+			System.out.println(stmt);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Questao questao = new Questao();
+				System.out.println("CodQuestao:"+rs.getLong("CodQuestao")+" Enunciado: "+rs.getString("Enunciado")+" OpcaoA:"+rs.getString("OpcaoA")+" OpcaoB:"+rs.getString("OpcaoB")+" OpcaoC:"+rs.getString("OpcaoC"));
+				// popula o objeto tarefa
+				questao.setCodQuestao(rs.getLong("CodQuestao"));
+				questao.setEnunciado(rs.getString("Enunciado"));
+				questao.setOpcaoA(rs.getString("OpcaoA"));
+				questao.setOpcaoB(rs.getString("OpcaoB"));
+				questao.setOpcaoC(rs.getString("OpcaoC"));
+				questao.setOpcaoD(rs.getString("OpcaoD"));
+				questao.setOpcaoE(rs.getString("OpcaoE"));
+				questoes.add(questao);
+			}
+			
+			rs.close();
+			stmt.close();
+			return questoes;
 			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

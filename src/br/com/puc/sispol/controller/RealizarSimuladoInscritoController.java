@@ -22,7 +22,7 @@ public class RealizarSimuladoInscritoController {
 	@RequestMapping("realizaSimulado")
 	public String realiza(Long codUsuario, Model model) {
 
-		try {
+		//try {
 			// Existe simulado ?
 			// Se sim mostra o formulario
 			// Se não mostra msg nao existe simulado inscrito
@@ -37,13 +37,14 @@ public class RealizarSimuladoInscritoController {
 				System.out.println("area de co: " + a.getTitulo());
 			}
 			model.addAttribute("areasDeConhecimento", lista);
+			model.addAttribute("questoes", daoSimulado.buscaQuestoesDoSimulado(simulado));
 			
 			
 			
 			return "realizar_simulado_inscrito/formulario";
-		} catch (Exception e) {
-			return "realizar_simulado_inscrito/falha";
-		}
+		//} catch (Exception e) {
+			//return "realizar_simulado_inscrito/falha";
+		//}
 	}
 
 }
