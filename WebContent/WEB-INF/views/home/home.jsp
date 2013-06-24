@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../cabecalho.jsp" />
-</head>
 <body>
 <!--<img src="<c:url value="resources/imagens/puc.png"/>"/>-->
 <c:import url="../menu.jsp" />
