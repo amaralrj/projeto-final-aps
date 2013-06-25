@@ -17,4 +17,3 @@
 <!-- <script type="text/javascript" src="<c:url value="resources/js/jquery-ui-1.10.3.custom.js"/>"></script> -->
 <script src="resources/js/bootstrap.min.js"></script>
 
-</head>
