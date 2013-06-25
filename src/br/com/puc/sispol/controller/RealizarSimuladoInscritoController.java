@@ -22,13 +22,13 @@ public class RealizarSimuladoInscritoController {
 	@RequestMapping("realizaSimulado")
 	public String realiza(Long codUsuario, Model model) {
 
-		//try {
+		try {
 			// Existe simulado ?
 			// Se sim mostra o formulario
 			// Se não mostra msg nao existe simulado inscrito
 			Simulado simulado = daoSimulado
 					.buscaSimuladoASerRealizado(codUsuario);
-			
+
 			model.addAttribute("simulado", simulado);
 			List<AreaDeConhecimentoQuantidade> lista = new ArrayList<AreaDeConhecimentoQuantidade>();
 			lista = daoSimulado.buscaAreasDeConhecimentoDoSimulado(simulado);
@@ -37,14 +37,15 @@ public class RealizarSimuladoInscritoController {
 				System.out.println("area de co: " + a.getTitulo());
 			}
 			model.addAttribute("areasDeConhecimento", lista);
-			model.addAttribute("questoes", daoSimulado.buscaQuestoesDoSimulado(simulado));
-			
-			
-			
+			model.addAttribute("questoes",
+					daoSimulado.buscaQuestoesDoSimulado(simulado));
+
 			return "realizar_simulado_inscrito/formulario";
-		//} catch (Exception e) {
-			//return "realizar_simulado_inscrito/falha";
-		//}
+		} catch (NullPointerException e) {
+			  System.out.println("Ocorreu um NullPointerException ao executar o método realiza() "+e);
+
+			return "realizar_simulado_inscrito/falha";
+		}
 	}
 
 }
