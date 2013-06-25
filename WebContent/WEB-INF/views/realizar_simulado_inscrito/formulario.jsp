@@ -1,12 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="../cabecalho.jsp" />
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-</head>
-<body>
-	<c:import url="../menu.jsp" />
-	<script type="text/javascript" src="resources/js/jquery.countdown.js"></script>
-
-	<script type="text/javascript">
+<script type="text/javascript" src="resources/js/jquery.countdown.js"></script>
+<script type="text/javascript">
 		var dataDeRealizacao = '<fmt:formatDate value="${simulado.dataDeRealizacao.time}" pattern="dd/MM/yyyy" />';
 		var arraydataDeRealizacao = dataDeRealizacao.split('/');
 		//alert('Ano: '+arraydataDeRealizacao[2]);
@@ -30,9 +26,9 @@
 					});
 		});
 	</script>
-
-
-
+</head>
+<body>
+	<c:import url="../menu.jsp" />
 	<div class="container-fluid">
 		<span class="label label-info pull-right"><i
 			class="icon-search icon-time"></i> Tempo decorrido:&nbsp;
