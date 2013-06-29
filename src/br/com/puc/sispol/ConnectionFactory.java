@@ -7,10 +7,10 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 
 	public Connection getConnection() throws SQLException {
-		System.out.println("conectando ...");
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
+			System.out.println("conectando com.mysql.jdbc.Driver ...");
 		} catch (ClassNotFoundException e) {
 			throw new SQLException(e);
 		}

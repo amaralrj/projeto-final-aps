@@ -29,6 +29,16 @@ public class Simulado {
 	private String titulo;
 
 	private List<Questao> questoes;
+	private List<AreaDeConhecimentoQuantidade> areasDeConhecimentoQuantidade;
+
+	public List<AreaDeConhecimentoQuantidade> getAreasDeConhecimentoQuantidade() {
+		return areasDeConhecimentoQuantidade;
+	}
+
+	public void setAreasDeConhecimentoQuantidade(
+			List<AreaDeConhecimentoQuantidade> areasDeConhecimentoQuantidade) {
+		this.areasDeConhecimentoQuantidade = areasDeConhecimentoQuantidade;
+	}
 
 	public List<Questao> getQuestoes() {
 		return questoes;

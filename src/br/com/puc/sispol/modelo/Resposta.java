@@ -1,7 +1,14 @@
 package br.com.puc.sispol.modelo;
 
 public class Resposta {
+	
 	private Long codResposta;
+	
+	private Questao questao;
+	
+	private String opcaoEscolhida;	
+	
+	private Resultado resultado;
 	
 	public Long getCodResposta() {
 		return codResposta;
@@ -35,9 +42,4 @@ public class Resposta {
 		this.resultado = resultado;
 	}
 
-	private String opcaoEscolhida;
-	
-	private Questao questao;
-	
-	private Resultado resultado;
 }

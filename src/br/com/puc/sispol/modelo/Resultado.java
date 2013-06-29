@@ -8,9 +8,9 @@ public class Resultado {
 	private Integer notaDoSimulado;
 
 	private Simulado simulado;
-	
+
 	private Usuario usuario;
-	
+
 	private List<Resposta> respostas;
 
 	public Long getCodResultado() {
@@ -51,6 +51,11 @@ public class Resultado {
 
 	public void setRespostas(List<Resposta> respostas) {
 		this.respostas = respostas;
-	} 
+	}
+
+	@Override
+	public String toString() {
+		return "codResultado:" + codResultado;
+	}
 
 }

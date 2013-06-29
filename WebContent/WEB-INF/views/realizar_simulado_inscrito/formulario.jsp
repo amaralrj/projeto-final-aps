@@ -33,8 +33,9 @@
 		<span class="label label-info pull-right"><i
 			class="icon-search icon-time"></i> Tempo decorrido:&nbsp;
 			<div id="cronometro" style="float: right"></div></span>
+	<br />	<br />	<br />			
 	</div>
-	</div>
+
 	<div class="row">
 		<div class="span1">
 			<a> </a>
@@ -81,7 +82,7 @@
             			<c:if test="${!loop.last}"> / </c:if>
 						</c:forEach>
 				</tr>
-				<c:forEach items="${areasDeConhecimento}" var="areaDeConhecimento">
+				<c:forEach items="${simulado.areasDeConhecimentoQuantidade}" var="areaDeConhecimento">
 					<tr>
 						<td><b>${areaDeConhecimento.titulo}</b></td>
 						<td>${areaDeConhecimento.quantidade} questões</td>
@@ -90,12 +91,17 @@
 
 				</tbody>
 			</table>
+			<form class="form-signin form-horizontal"
+			action="adicionaResultado" method="post">
 			<table style="width: 857px; height: 11px;">
 				<caption>
 					<b><h4 class="pull-left">Questões</h4></b>
 				</caption>
 				<tbody>
-					<c:forEach items="${questoes}" var="questao" varStatus="rowCounter">
+					<input type="hidden" name="codResultado" value="${resultado.codResultado}" />
+					<input type="hidden" name="codSimulado" value="${simulado.codSimulado}" />
+
+					<c:forEach items="${simulado.questoes}" var="questao" varStatus="rowCounter">
 						<tr>
 							<td><b>Questão ${rowCounter.count}:</b>
 								<p></p></td>
@@ -106,36 +112,37 @@
 							</td>
 						</tr>
 						<tr>
+						<input type="hidden" name="respostas[${rowCounter.count-1}].questao.codQuestao" value="${questao.codQuestao}" />
 							<td><label class="radio"> <span
 									class="badge badge-info">A</span> <input type="radio"
-									name="questao[]" id="questao[]" value="A"
+									name="respostas[${rowCounter.count-1}].opcaoEscolhida" id="respostas[${rowCounter.count-1}].opcaoEscolhida" value="A"
 									checked="" /> ${questao.opcaoA}
 							</label></td>
 						</tr>
 						<tr>
 							<td><label class="radio"> <span
 									class="badge badge-info">B</span> <input type="radio"
-									name="questao[]" id="questao[]" value="B" />${questao.opcaoB}
+									name="respostas[${rowCounter.count-1}].opcaoEscolhida" id="respostas[${rowCounter.count-1}].opcaoEscolhida" value="B" />${questao.opcaoB}
 							</label></td>
 						</tr>
 						<tr>
 							<td><label class="radio"> <span
 									class="badge badge-info">C</span> <input type="radio"
-									name="questao[]" id="questao[]" value="C" />
+									name="respostas[${rowCounter.count-1}].opcaoEscolhida" id="respostas[${rowCounter.count-1}].opcaoEscolhida" value="C" />
 									${questao.opcaoC}
 							</label></td>
 						</tr>
 						<tr>
 							<td><label class="radio"> <span
 									class="badge badge-info">D</span> <input type="radio"
-									name="questao[]" id="questao[]" value="D" />
+									name="respostas[${rowCounter.count-1}].opcaoEscolhida" id="questao[${rowCounter.count-1}].opcaoEscolhida" value="D" />
 									${questao.opcaoD}
 							</label></td>
 						</tr>
 						<tr>
 							<td><label class="radio"> <span
 									class="badge badge-info">E</span> <input type="radio"
-									name="questao[]" id="questao[]" value="E" />
+									name="respostas[${rowCounter.count-1}].opcaoEscolhida" id="respostas[${rowCounter.count-1}].opcaoEscolhida" value="E" />
 									${questao.opcaoE}
 							</label></td>
 						</tr>
@@ -143,10 +150,11 @@
 					</c:forEach>
 					<tr>
 						<td><br>
-							<button class="btn" type="button">Encerrar Simulado</button></td>
+							<button class="btn" type="submit">Encerrar Simulado</button></td>
 					</tr>
 				</tbody>
 			</table>
+			</form>
 		</div>
 	</div>
 	<c:import url="../rodape.jsp" />

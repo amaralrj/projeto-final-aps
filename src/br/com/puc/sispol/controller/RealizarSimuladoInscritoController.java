@@ -1,51 +1,72 @@
 package br.com.puc.sispol.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.puc.sispol.dao.ResultadoDAO;
 import br.com.puc.sispol.dao.SimuladoDAO;
-import br.com.puc.sispol.modelo.AreaDeConhecimentoQuantidade;
+import br.com.puc.sispol.modelo.Resposta;
+import br.com.puc.sispol.modelo.Resultado;
 import br.com.puc.sispol.modelo.Simulado;
 
 @Controller
 public class RealizarSimuladoInscritoController {
 	private SimuladoDAO daoSimulado;
+	private ResultadoDAO daoResultado;
 
+	
 	public RealizarSimuladoInscritoController() {
 		this.daoSimulado = new SimuladoDAO();
+		this.daoResultado = new ResultadoDAO();
+
 	}
 
 	@RequestMapping("realizaSimulado")
 	public String realiza(Long codUsuario, Model model) {
 
 		try {
-			// Existe simulado ?
-			// Se sim mostra o formulario
-			// Se não mostra msg nao existe simulado inscrito
+			
 			Simulado simulado = daoSimulado
-					.buscaSimuladoASerRealizado(codUsuario);
-
+					.busca(codUsuario);
+			
 			model.addAttribute("simulado", simulado);
-			List<AreaDeConhecimentoQuantidade> lista = new ArrayList<AreaDeConhecimentoQuantidade>();
-			lista = daoSimulado.buscaAreasDeConhecimentoDoSimulado(simulado);
+			
+			Resultado resultado = daoResultado.busca(codUsuario, simulado);
 
-			for (AreaDeConhecimentoQuantidade a : lista) {
-				System.out.println("area de co: " + a.getTitulo());
-			}
-			model.addAttribute("areasDeConhecimento", lista);
-			model.addAttribute("questoes",
-					daoSimulado.buscaQuestoesDoSimulado(simulado));
+			model.addAttribute("resultado", resultado);
+			
+			System.out.println("Usuário: "+codUsuario + " realiza Simulado: " + simulado.getTitulo() + " Resulado: " + resultado.getCodResultado());
+			
+			
 
 			return "realizar_simulado_inscrito/formulario";
 		} catch (NullPointerException e) {
-			  System.out.println("Ocorreu um NullPointerException ao executar o método realiza() "+e);
+			
+			  System.out.println("Ocorreu um NullPointerExdoception ao executar o método realiza() "+e);
 
 			return "realizar_simulado_inscrito/falha";
 		}
+	}
+	
+	@RequestMapping("adicionaResultado")
+	public String adicionaResultado(Resultado resultado) {
+		
+			//grava as respotas respondidas
+			System.out.println("Zera resultado: " + resultado);
+			
+			//Zerar respostas para o resultado Caso ja tenha entregue a prova
+			daoResultado.apagaRespostas(resultado);
+			
+			for(Resposta r: resultado.getRespostas()){
+				r.setResultado(resultado);
+				System.out.println(" OpcaoEscolhida: "+r.getOpcaoEscolhida());
+				System.out.println(" Questao: "+r.getQuestao().getCodQuestao());
+				daoResultado.adicionaResposta(r);
+				//insere resposta na tabela resposta;
+			}
+
+			return "realizar_simulado_inscrito/ok";
 	}
 
 }

@@ -13,6 +13,7 @@ import br.com.puc.sispol.modelo.Questao;
 import br.com.puc.sispol.modelo.Resposta;
 import br.com.puc.sispol.modelo.Resultado;
 import br.com.puc.sispol.modelo.Simulado;
+import br.com.puc.sispol.modelo.Tarefa;
 
 public class ResultadoDAO {
 	private final Connection connection;
@@ -158,16 +159,11 @@ public class ResultadoDAO {
 
 			System.out.println("Consulta respostas...");
 			List<Resposta> respostas = new ArrayList<Resposta>();
-			stmt = this.connection
-					.prepareStatement("	SELECT "
-							+ " * "
-							+ " FROM "
-							+ "		sispol.Resposta AS r "
-							+ "		 "
-							+ " WHERE " + "		CodResultado = ? "
-							+ "");
+			stmt = this.connection.prepareStatement("	SELECT " + " * "
+					+ " FROM " + "		sispol.Resposta AS r " + "		 " + " WHERE "
+					+ "		CodResultado = ? " + "");
 			stmt.setLong(1, resultado.getCodResultado());
-			System.out.println(stmt);
+			//System.out.println(stmt);
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -176,18 +172,78 @@ public class ResultadoDAO {
 				// popula o objeto resposta
 				resposta.setCodResposta(rs.getLong("CodResposta"));
 				resposta.setOpcaoEscolhida(rs.getString("OpcaoEscolhida"));
-				
+
 				respostas.add(resposta);
 			}
 
 			resultado.setRespostas(respostas);
-
 
 			rs.close();
 			stmt.close();
 
 			return resultado;
 		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void adiciona(Tarefa tarefa) {
+		String sql = "insert into tarefas (descricao, finalizado) values (?,?)";
+		PreparedStatement stmt;
+		try {
+			stmt = connection.prepareStatement(sql);
+			stmt.setString(1, tarefa.getDescricao());
+			stmt.setBoolean(2, tarefa.isFinalizado());
+			stmt.execute();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void adicionaResposta(Resposta resposta) {
+		String sql = "insert into Resposta (CodQuestao, CodResultado, OpcaoEscolhida) values (?,?,?)";
+		PreparedStatement stmt;
+		try {
+			stmt = connection.prepareStatement(sql);
+
+			stmt.setLong(1, resposta.getQuestao().getCodQuestao());
+			stmt.setLong(2, resposta.getResultado().getCodResultado());
+			stmt.setString(3, resposta.getOpcaoEscolhida());
+			
+			stmt.execute();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	private Resposta populaResposta(ResultSet rs) throws SQLException {
+		Resposta resposta = new Resposta();
+		try {
+			// popula o objeto tarefa
+			resposta.setCodResposta(rs.getLong("CodResposta"));
+			resposta.setOpcaoEscolhida(rs.getString("OpcaoEscolhida"));
+
+			return resposta;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
+	public void apagaRespostas(Resultado resultado) {
+
+		String sql = "DELETE FROM sispol.Resposta WHERE CodResultado = ?";
+		PreparedStatement stmt;
+		ResultSet rs = null;
+
+		try {
+
+			stmt = connection.prepareStatement(sql);
+			stmt.setLong(1, resultado.getCodResultado());
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+
 			throw new RuntimeException(e);
 		}
 	}

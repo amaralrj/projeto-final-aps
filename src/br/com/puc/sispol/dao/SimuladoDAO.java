@@ -27,6 +27,7 @@ public class SimuladoDAO {
 		}
 	}
 
+	// UCS - Criar Simulado
 	public void adiciona(Simulado simulado) {
 		String sql = "insert into Simulado (DataDeRealizacao, HoraDeRealizacao, Duracao, PontuacaoMinima, Titulo) values (?,?,?,?,?)";
 		PreparedStatement stmt;
@@ -71,6 +72,7 @@ public class SimuladoDAO {
 
 	}
 
+	// UCS - Efetuar inscrição Simulado
 	public List<Simulado> listaAguardandoInscricao() {
 
 		try {
@@ -115,6 +117,7 @@ public class SimuladoDAO {
 		return simulado;
 	}
 
+	// UCS - Efetuar inscrição Simulado
 	public void efetuaInscricao(Long codSimulado, Long codUsuario) {
 
 		if (codSimulado == null) {
@@ -140,9 +143,11 @@ public class SimuladoDAO {
 
 	}
 
-	public Simulado buscaSimuladoASerRealizado(Long codUsuario) {
-
+	// UCS - Realizar Simulado Inscrito
+	public Simulado busca(Long codUsuario) {
+		Simulado simulado = new Simulado();
 		try {
+			System.out.println("Consulta Simulado...");
 			PreparedStatement stmt = this.connection
 					.prepareStatement("select "
 							+ "    *"
@@ -161,83 +166,68 @@ public class SimuladoDAO {
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				return populaSimulado(rs);
+				simulado = populaSimulado(rs);
 			}
-
-			rs.close();
-			stmt.close();
-
-			return null;
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	public List<AreaDeConhecimentoQuantidade> buscaAreasDeConhecimentoDoSimulado(Simulado simulado) {
-
-		try {
+			
+			System.out.println("Consulta areas de Conhecimento do Simulado...");
 			List<AreaDeConhecimentoQuantidade> areasDeConhecimentoQuantidade = new ArrayList<AreaDeConhecimentoQuantidade>();
-			PreparedStatement stmt = this.connection.prepareStatement("	SELECT "
-					+ " a.Titulo, count(*) AS total " 
-					+ " FROM "
-					+ "		sispol.SimuladoPossuiQuestao AS s "
-					+ "		INNER JOIN sispol.Questao AS q "
-					+ "			ON (s.CodQuestao = q.CodQuestao) "
-					+ "		INNER JOIN sispol.AreaDeConhecimento AS a "
-					+ "			ON (q.CodAreaDeConhecimento = a.CodAreaDeConhecimento) "
-					+ " WHERE " 
-					+ "		CodSimulado = ? "
-					+ " GROUP BY a.Titulo ORDER BY a.Titulo");
+			stmt = this.connection
+					.prepareStatement("	SELECT "
+							+ " a.Titulo, count(*) AS total "
+							+ " FROM "
+							+ "		sispol.SimuladoPossuiQuestao AS s "
+							+ "		INNER JOIN sispol.Questao AS q "
+							+ "			ON (s.CodQuestao = q.CodQuestao) "
+							+ "		INNER JOIN sispol.AreaDeConhecimento AS a "
+							+ "			ON (q.CodAreaDeConhecimento = a.CodAreaDeConhecimento) "
+							+ " WHERE " + "		CodSimulado = ? "
+							+ " GROUP BY a.Titulo ORDER BY a.Titulo");
 			stmt.setLong(1, simulado.getCodSimulado());
 			System.out.println(stmt);
-			ResultSet rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				AreaDeConhecimentoQuantidade areaDeConhecimentoQuantidade = new AreaDeConhecimentoQuantidade();
-				
+
 				// popula o objeto tarefa
 				areaDeConhecimentoQuantidade.setTitulo(rs.getString("Titulo"));
 				areaDeConhecimentoQuantidade.setQuantidade(rs.getInt("total"));
 				areasDeConhecimentoQuantidade.add(areaDeConhecimentoQuantidade);
 			}
-			
-			rs.close();
-			stmt.close();
-			return areasDeConhecimentoQuantidade;
-			
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	
-	public List<Questao> buscaQuestoesDoSimulado(Simulado simulado) {
-		System.out.println("Chamando buscaQuestoesDoSimulado()");
-		try {
+
+			simulado.setAreasDeConhecimentoQuantidade(areasDeConhecimentoQuantidade);
+
+			System.out.println("Consulta questões do Simulado...");
+
 			List<Questao> questoes = new ArrayList<Questao>();
-			PreparedStatement stmt = this.connection.prepareStatement("	SELECT "
-					+ " q.CodQuestao, " 
-					+ " q.Enunciado, "
-					+ " q.OpcaoA, "
-					+ " q.OpcaoB, "
-					+ " q.OpcaoC, "
-					+ " q.OpcaoD, "
-					+ "   q.OpcaoE "
-					+ " FROM "
-					+ " 	sispol.SimuladoPossuiQuestao AS s "
-					+ "		INNER JOIN sispol.Questao AS q "
-					+ "			ON (s.CodQuestao = q.codQuestao) "
-					+ " 	INNER JOIN sispol.AreaDeConhecimento AS a "
-					+ " 		ON (q.CodAreaDeConhecimento = a.CodAreaDeConhecimento) "
-					+ " WHERE "
-					+ "		s.CodSimulado = ? "
-					+ " ORDER BY a.Titulo ");
+			stmt = this.connection
+					.prepareStatement("	SELECT "
+							+ " q.CodQuestao, "
+							+ " q.Enunciado, "
+							+ " q.OpcaoA, "
+							+ " q.OpcaoB, "
+							+ " q.OpcaoC, "
+							+ " q.OpcaoD, "
+							+ "   q.OpcaoE "
+							+ " FROM "
+							+ " 	sispol.SimuladoPossuiQuestao AS s "
+							+ "		INNER JOIN sispol.Questao AS q "
+							+ "			ON (s.CodQuestao = q.codQuestao) "
+							+ " 	INNER JOIN sispol.AreaDeConhecimento AS a "
+							+ " 		ON (q.CodAreaDeConhecimento = a.CodAreaDeConhecimento) "
+							+ " WHERE " + "		s.CodSimulado = ? "
+							+ " ORDER BY a.Titulo ");
 			stmt.setLong(1, simulado.getCodSimulado());
 			System.out.println(stmt);
-			ResultSet rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				Questao questao = new Questao();
-				System.out.println("CodQuestao:"+rs.getLong("CodQuestao")+" Enunciado: "+rs.getString("Enunciado")+" OpcaoA:"+rs.getString("OpcaoA")+" OpcaoB:"+rs.getString("OpcaoB")+" OpcaoC:"+rs.getString("OpcaoC"));
+				System.out.println("CodQuestao:" + rs.getLong("CodQuestao")
+						+ " Enunciado: " + rs.getString("Enunciado")
+						+ " OpcaoA:" + rs.getString("OpcaoA") + " OpcaoB:"
+						+ rs.getString("OpcaoB") + " OpcaoC:"
+						+ rs.getString("OpcaoC"));
 				// popula o objeto tarefa
 				questao.setCodQuestao(rs.getLong("CodQuestao"));
 				questao.setEnunciado(rs.getString("Enunciado"));
@@ -248,14 +238,18 @@ public class SimuladoDAO {
 				questao.setOpcaoE(rs.getString("OpcaoE"));
 				questoes.add(questao);
 			}
-			
+
+			simulado.setQuestoes(questoes);
+
 			rs.close();
 			stmt.close();
-			return questoes;
-			
+
+			return simulado;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
+
+	
 
 }
