@@ -163,7 +163,7 @@ public class ResultadoDAO {
 					+ " FROM " + "		sispol.Resposta AS r " + "		 " + " WHERE "
 					+ "		CodResultado = ? " + "");
 			stmt.setLong(1, resultado.getCodResultado());
-			//System.out.println(stmt);
+			// System.out.println(stmt);
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -187,19 +187,6 @@ public class ResultadoDAO {
 		}
 	}
 
-	public void adiciona(Tarefa tarefa) {
-		String sql = "insert into tarefas (descricao, finalizado) values (?,?)";
-		PreparedStatement stmt;
-		try {
-			stmt = connection.prepareStatement(sql);
-			stmt.setString(1, tarefa.getDescricao());
-			stmt.setBoolean(2, tarefa.isFinalizado());
-			stmt.execute();
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
-
 	public void adicionaResposta(Resposta resposta) {
 		String sql = "insert into Resposta (CodQuestao, CodResultado, OpcaoEscolhida) values (?,?,?)";
 		PreparedStatement stmt;
@@ -209,7 +196,7 @@ public class ResultadoDAO {
 			stmt.setLong(1, resposta.getQuestao().getCodQuestao());
 			stmt.setLong(2, resposta.getResultado().getCodResultado());
 			stmt.setString(3, resposta.getOpcaoEscolhida());
-			
+
 			stmt.execute();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -244,6 +231,51 @@ public class ResultadoDAO {
 
 		} catch (SQLException e) {
 
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void apura() {
+
+		try {
+			System.out.println("Apura resultados...");
+			PreparedStatement stmt = this.connection
+					.prepareStatement(" SELECT "
+							+ "		tbResul.CodResultado,"
+							+ "		COUNT(*) AS NotaDoSimulado "
+							+ "	FROM "
+							+ " 	sispol.Resultado tbResul "
+							+ "   	INNER JOIN sispol.Resposta tbResp "
+							+ "   		ON (tbResul.CodResultado = tbResp.CodResultado) "
+							+ "    	INNER JOIN sispol.Questao tbQ "
+							+ "       	ON (tbResp.CodQuestao = tbQ.CodQuestao) " 
+							+ "		INNER JOIN sispol.Simulado tbS "
+							+ "			ON (tbResul.CodSimulado = tbS.CodSimulado) "
+							+ "	WHERE "
+							+ "    	tbResp.OpcaoEscolhida = tbQ.OpcaoCorreta "
+							+ "    	AND tbResul.NotaDoSimulado is null " 
+							+ "		AND concat(curdate(), ' ' , curtime()) > DATE_ADD(TIMESTAMP(concat(tbS.DataDeRealizacao, ' ' , tbS.HoraDeRealizacao)), INTERVAL tbS.Duracao HOUR) "
+							+ "	GROUP BY 1 ");
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+
+				System.out.println("Armazena Nota Simulado em Resultado.");
+
+				String sql = "UPDATE sispol.Resultado SET NotaDoSimulado = ? WHERE CodResultado = ?";
+
+				stmt = connection.prepareStatement(sql);
+
+				stmt.setLong(1, rs.getLong("NotaDoSimulado"));
+				stmt.setLong(2, rs.getLong("CodResultado"));
+
+				stmt.execute();
+			}
+
+			rs.close();
+			stmt.close();
+
+		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
