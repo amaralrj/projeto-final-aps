@@ -150,7 +150,7 @@ CREATE TABLE `Questao` (
 
 LOCK TABLES `Questao` WRITE;
 /*!40000 ALTER TABLE `Questao` DISABLE KEYS */;
-INSERT INTO `Questao` VALUES (1,'Responda a questao de Port.',NULL,NULL,NULL,NULL,NULL,NULL,1,NULL),(2,'Responda a questão de Mat.',NULL,NULL,NULL,NULL,NULL,NULL,2,NULL);
+INSERT INTO `Questao` VALUES (1,'Responda a questao de Port.',NULL,NULL,NULL,NULL,NULL,'A',1,NULL),(2,'Responda a questão de Mat.',NULL,NULL,NULL,NULL,NULL,'B',2,NULL);
 /*!40000 ALTER TABLE `Questao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,7 +162,7 @@ DROP TABLE IF EXISTS `Resposta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Resposta` (
-  `CodResposta` int(11) NOT NULL,
+  `CodResposta` int(11) NOT NULL AUTO_INCREMENT,
   `OpcaoEscolhida` set('A','B','C','D','E') DEFAULT NULL,
   `CodQuestao` int(11) DEFAULT NULL,
   `CodResultado` int(11) DEFAULT NULL,
@@ -171,7 +171,7 @@ CREATE TABLE `Resposta` (
   KEY `CodResultado_idx` (`CodResultado`),
   CONSTRAINT `CodQuestao` FOREIGN KEY (`CodQuestao`) REFERENCES `Questao` (`CodQuestao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `CodResultado` FOREIGN KEY (`CodResultado`) REFERENCES `Resultado` (`CodResultado`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,6 +180,7 @@ CREATE TABLE `Resposta` (
 
 LOCK TABLES `Resposta` WRITE;
 /*!40000 ALTER TABLE `Resposta` DISABLE KEYS */;
+INSERT INTO `Resposta` VALUES (1,'A',2,1),(2,'A',1,1);
 /*!40000 ALTER TABLE `Resposta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,7 +210,7 @@ CREATE TABLE `Resultado` (
 
 LOCK TABLES `Resultado` WRITE;
 /*!40000 ALTER TABLE `Resultado` DISABLE KEYS */;
-INSERT INTO `Resultado` VALUES (1,NULL,1,2);
+INSERT INTO `Resultado` VALUES (1,1,1,2);
 /*!40000 ALTER TABLE `Resultado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -237,7 +238,7 @@ CREATE TABLE `Simulado` (
 
 LOCK TABLES `Simulado` WRITE;
 /*!40000 ALTER TABLE `Simulado` DISABLE KEYS */;
-INSERT INTO `Simulado` VALUES (1,'2013-06-24','21:00:00',2,10,'Enem 2012'),(2,'2013-07-16','16:00:00',2,10,'Enem 2012'),(3,'2013-07-16','16:00:00',2,10,'Portugues'),(4,'2013-07-16','16:00:00',2,10,'Enem 2012'),(5,'2013-07-16','16:00:00',2,10,'Enem 2012'),(6,'2013-07-16','16:00:00',2,10,'Enem 2012'),(7,'2013-07-16','16:00:00',2,10,'Enem 2012'),(8,'2013-07-16','16:00:00',2,10,'Enem 2012'),(9,'2013-07-16','16:00:00',2,10,'Enem 2012'),(10,'2013-07-16','16:00:00',2,10,'sei la'),(11,'2013-07-16','16:00:00',2,10,'Portugues'),(12,'2013-07-16','16:00:00',2,10,'Enem 2012'),(13,'2013-07-16','16:00:00',2,10,'Enem 2012'),(14,'2013-07-16','16:00:00',2,10,'Enem 2012'),(15,'2013-07-16','16:00:00',2,10,'Matemática'),(16,'2013-07-16','16:00:00',2,10,'Enem 2012'),(17,'2013-07-16','16:00:00',2,10,'uyatsdiuh'),(18,'2013-07-16','16:00:00',2,10,'ulmto');
+INSERT INTO `Simulado` VALUES (1,'2013-06-29','12:00:00',5,10,'Enem 2012'),(2,'2013-07-16','16:00:00',2,10,'Enem 2012'),(3,'2013-07-16','16:00:00',2,10,'Portugues'),(4,'2013-07-16','16:00:00',2,10,'Enem 2012'),(5,'2013-07-16','16:00:00',2,10,'Enem 2012'),(6,'2013-07-16','16:00:00',2,10,'Enem 2012'),(7,'2013-07-16','16:00:00',2,10,'Enem 2012'),(8,'2013-07-16','16:00:00',2,10,'Enem 2012'),(9,'2013-07-16','16:00:00',2,10,'Enem 2012'),(10,'2013-07-16','16:00:00',2,10,'sei la'),(11,'2013-07-16','16:00:00',2,10,'Portugues'),(12,'2013-07-16','16:00:00',2,10,'Enem 2012'),(13,'2013-07-16','16:00:00',2,10,'Enem 2012'),(14,'2013-07-16','16:00:00',2,10,'Enem 2012'),(15,'2013-07-16','16:00:00',2,10,'Matemática'),(16,'2013-07-16','16:00:00',2,10,'Enem 2012'),(17,'2013-07-16','16:00:00',2,10,'uyatsdiuh'),(18,'2013-07-16','16:00:00',2,10,'ulmto');
 /*!40000 ALTER TABLE `Simulado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -335,4 +336,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-24 21:21:27
+-- Dump completed on 2013-06-30 12:57:34
