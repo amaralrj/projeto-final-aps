@@ -168,7 +168,7 @@ public class SimuladoDAO {
 			if (rs.next()) {
 				simulado = populaSimulado(rs);
 			}
-			
+
 			System.out.println("Consulta areas de Conhecimento do Simulado...");
 			List<AreaDeConhecimentoQuantidade> areasDeConhecimentoQuantidade = new ArrayList<AreaDeConhecimentoQuantidade>();
 			stmt = this.connection
@@ -248,6 +248,31 @@ public class SimuladoDAO {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	// UCS - Consultar Classificacao oficial
+	public List<Simulado> listaUltimosSimuladosRealizados() {
+
+		try {
+			List<Simulado> simulados = new ArrayList<Simulado>();
+			PreparedStatement stmt = this.connection
+					.prepareStatement("select * from Simulado AS s where concat(curdate(), ' ' , curtime()) > DATE_ADD(TIMESTAMP(concat(s.DataDeRealizacao, ' ' , s.HoraDeRealizacao)), INTERVAL Duracao HOUR) LIMIT 0,20");
+			System.out.println(stmt);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				// adiciona a tarefa na lista
+				simulados.add(populaSimulado(rs));
+			}
+
+			rs.close();
+			stmt.close();
+
+			return simulados;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
 	}
 
 	

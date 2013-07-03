@@ -13,7 +13,7 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 		String uri = request.getRequestURI();
 		if (uri.endsWith("loginForm") || uri.endsWith("efetuaLogin")
 				|| uri.contains("resources") || uri.contains("mostraHome")
-				|| uri.contains("novoUsuario") || uri.contains("apura") 
+				|| uri.contains("novoUsuario") || uri.contains("apura") || uri.contains("lassificacaoSimulado")
 
 		) {
 			System.out.println("Carrega como usuário não logado");

@@ -60,13 +60,7 @@ public class TarefasController {
 		return "redirect:listaTarefas";
 	}
 
-	/*
-	 * @RequestMapping("finalizaTarefa") public String finaliza(Long id, Model
-	 * model) { TarefaDAO dao = new TarefaDAO(); dao.finaliza(id);
-	 * model.addAttribute("tarefa", dao.buscaPorId(id)); return
-	 * "tarefa/finalizada"; }
-	 */
-
+	
 	@RequestMapping("finalizaTarefa")
 	public void finaliza(Long id, HttpServletResponse response) {
 		dao.finaliza(id);

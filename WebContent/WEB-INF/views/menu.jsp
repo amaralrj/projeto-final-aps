@@ -55,7 +55,7 @@
 					<li><a href="#">Consultar Gabarito</a></li>
 					<li><a href="#">Simulado Passado</a></li>
 					<li><a href="#">Classificação Geral</a></li>
-					<li><a href="#">Classificação do Simulado</a></li>
+					<li><a href="consultarClassificacaoSimulado">Classificação do Simulado</a></li>
 					<li><a href="listaTarefas">Lista de tarefas</a></li>
 					<c:if test="${usuarioLogado ne null}">
 						<li class="divider"></li>
