@@ -47,7 +47,8 @@
           <tr>
             <td>${simulado.codSimulado}</td>
             <td>${simulado.titulo}</td>
-            <td>${simulado.dataDeRealizacao.time}</td>
+            <td><fmt:formatDate value="${simulado.dataDeRealizacao.time}"
+						pattern="dd/MM/yyyy" /></td>
             <td>
               <a href="classificacaoSimulado?codSimulado=${simulado.codSimulado}" role="button" class="btn" >Consultar Classificação</a>
             </td>
