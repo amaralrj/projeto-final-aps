@@ -14,7 +14,6 @@ import br.com.puc.sispol.ConnectionFactory;
 import br.com.puc.sispol.modelo.AreaDeConhecimentoQuantidade;
 import br.com.puc.sispol.modelo.Questao;
 import br.com.puc.sispol.modelo.Simulado;
-import br.com.puc.sispol.modelo.Tarefa;
 
 public class SimuladoDAO {
 	private final Connection connection;
@@ -273,6 +272,31 @@ public class SimuladoDAO {
 			throw new RuntimeException(e);
 		}
 
+	}
+
+	public Simulado buscaPorCodigo(Long codSimulado) {
+		if (codSimulado == null) {
+			throw new IllegalStateException("Id do Simulado não deve ser nula.");
+		}
+
+		try {
+			PreparedStatement stmt = this.connection
+					.prepareStatement("select * from sispol.Simulado where CodSimulado = ?");
+			stmt.setLong(1, codSimulado);
+
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				return populaSimulado(rs);
+			}
+
+			rs.close();
+			stmt.close();
+
+			return null;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	

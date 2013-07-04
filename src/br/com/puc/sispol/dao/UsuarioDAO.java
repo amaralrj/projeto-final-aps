@@ -68,7 +68,7 @@ public class UsuarioDAO {
 		}
 	}
 
-	private Usuario populaUsuario(ResultSet rs) throws SQLException {
+	public Usuario populaUsuario(ResultSet rs) throws SQLException {
 		Usuario usuario = new Usuario();
 
 		// popula o objeto tarefa
@@ -79,6 +79,31 @@ public class UsuarioDAO {
 		usuario.setNome(rs.getString("nome"));
 
 		return usuario;
+	}
+
+	public Usuario buscaPorCodigo(Long codUsuario) {
+		if (codUsuario == null) {
+			throw new IllegalStateException("Codigo do usuario não deve ser nulo.");
+		}
+
+		try {
+			PreparedStatement stmt = this.connection
+					.prepareStatement("select * from sispol.Usuario where CodUsuario = ?");
+			stmt.setLong(1, codUsuario);
+
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				return populaUsuario(rs);
+			}
+
+			rs.close();
+			stmt.close();
+
+			return null;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }
 

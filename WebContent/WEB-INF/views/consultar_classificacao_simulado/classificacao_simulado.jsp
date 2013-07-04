@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <c:import url="../cabecalho.jsp" />
 <c:import url="../menu.jsp" />
  <div class="container-fluid" >
@@ -32,7 +33,8 @@
         </ol>
     <table class="table table-hover table-bordered table-condensed table-striped" >
         <caption>
-          <b><h4 class="pull-left" >Classificação do Simulado para Banco do Brasil-Tecnico Administrativo (20/10/2012)</h4></b> 
+          <b><h4 class="pull-left" >Classificação do Simulado para ${simulado.titulo}  (<fmt:formatDate value="${simulado.dataDeRealizacao.time}"
+						pattern="dd/MM/yyyy" />)</h4></b> 
         </caption>
         <thead>
           <tr>
@@ -41,22 +43,12 @@
           </tr>
         </thead>
         <tbody>
+        <c:forEach items="${resultados}" var="resultado">
           <tr>
-            <td>Anderson Santos</td>
-            <td>40</td>
+            <td>${resultado.usuario.nome}</td>
+            <td>${resultado.notaDoSimulado}</td>
           </tr>
-          <tr>
-            <td>Pedro Amaral</td>
-            <td>35</td>
-          </tr>
-          <tr>
-            <td>Bruno Ronzani</td>
-            <td>20</td>
-          </tr>
-          <tr>
-            <td>Juan Capobianco</td>
-            <td>20</td>
-          </tr>
+         </c:forEach>
         </tbody>
       </table>   
       </div>

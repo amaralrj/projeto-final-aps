@@ -11,11 +11,14 @@ import br.com.puc.sispol.ConnectionFactory;
 import br.com.puc.sispol.modelo.Resposta;
 import br.com.puc.sispol.modelo.Resultado;
 import br.com.puc.sispol.modelo.Simulado;
+import br.com.puc.sispol.modelo.Usuario;
 
 public class ResultadoDAO {
 	private final Connection connection;
-
+	private UsuarioDAO daoUsuario;
+	
 	public ResultadoDAO() {
+		
 		try {
 			this.connection = new ConnectionFactory().getConnection();
 		} catch (SQLException e) {
@@ -27,8 +30,12 @@ public class ResultadoDAO {
 		Resultado resultado = new Resultado();
 		try {
 			// popula o objeto tarefa
+			System.out.println("Nota do Simulado: "+rs.getInt("NotaDoSimulado"));
 			resultado.setCodResultado(rs.getLong("CodResultado"));
 			resultado.setNotaDoSimulado(rs.getInt("NotaDoSimulado"));
+			
+			resultado.setUsuario(new Usuario());
+			resultado.getUsuario().setNome(rs.getString("Nome"));
 			
 			return resultado;
 		} catch (SQLException e) {
@@ -170,7 +177,7 @@ public class ResultadoDAO {
 		try {
 			List<Resultado> resultados = new ArrayList<Resultado>();
 			PreparedStatement stmt = this.connection
-					.prepareStatement("select * from Resultado AS s where CodSimulado = ? AND NotaDoSimulado IS NOT NULL");
+					.prepareStatement("select * from Resultado AS s INNER JOIN Usuario AS u ON s.CodUsuario = u.CodUsuario  WHERE CodSimulado = ? AND NotaDoSimulado IS NOT NULL ORDER BY s.NotaDoSimulado DESC,u.Nome ASC");
 			stmt.setLong(1, simulado.getCodSimulado());
 			System.out.println(stmt);
 			ResultSet rs = stmt.executeQuery();
