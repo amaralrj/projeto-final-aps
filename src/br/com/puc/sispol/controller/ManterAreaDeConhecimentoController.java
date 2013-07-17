@@ -21,14 +21,14 @@ public class ManterAreaDeConhecimentoController {
 
 	@RequestMapping("novaAreaDeConhecimento")
 	public String form() {
-		return "manter_area_de_conhecimento/formulario";
+		return "manter_area_de_conhecimento/incluir_area_de_conhecimento";
 	}
 
 	@RequestMapping("adicionaAreaDeConhecimento")
 	public ModelAndView adiciona(@Valid AreaDeConhecimento areaDeConhecimento,
 			BindingResult result) {
 
-		ModelAndView mv = new ModelAndView("manter_area_de_conhecimento/formulario");
+		ModelAndView mv = new ModelAndView("manter_area_de_conhecimento/incluir_area_de_conhecimento");
 		// mv.addObject("tarefas", tarefas);
 
 		if (result.hasFieldErrors()) {

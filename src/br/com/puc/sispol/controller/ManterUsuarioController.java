@@ -15,6 +15,6 @@ public class ManterUsuarioController {
 
 	@RequestMapping("novoUsuario")
 	public String form() {
-		return "manter_usuario/formulario";
+		return "manter_usuario/incluir_usuario";
 	}
 }

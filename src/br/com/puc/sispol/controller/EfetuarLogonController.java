@@ -15,7 +15,7 @@ import br.com.puc.sispol.modelo.Usuario;
 public class EfetuarLogonController {
 	@RequestMapping("loginForm")
 	public String loginForm() {
-		return "formulario-login";
+		return "logon";
 	}
 
 	@RequestMapping(value = "/efetuaLogin", method = { RequestMethod.POST,
@@ -24,7 +24,7 @@ public class EfetuarLogonController {
 			HttpSession session) {
 		
 		if (result.hasErrors()) {
-			return "formulario-login";
+			return "logon";
 		}
 
 		Usuario user = new Usuario();
@@ -39,7 +39,7 @@ public class EfetuarLogonController {
 			}
 		}
 		result.rejectValue("email", "email.notvalid", "E-mail ou Senha inválidos.");
-		return "formulario-login";
+		return "logon";
 	}
 
 	@RequestMapping("areaAdmin")

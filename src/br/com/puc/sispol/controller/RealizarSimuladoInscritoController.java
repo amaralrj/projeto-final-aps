@@ -40,12 +40,12 @@ public class RealizarSimuladoInscritoController {
 			
 			
 
-			return "realizar_simulado_inscrito/formulario";
+			return "realizar_simulado_inscrito/realizar_simulado_oficial";
 		} catch (NullPointerException e) {
 			
 			  System.out.println("Ocorreu um NullPointerExdoception ao executar o método realiza() "+e);
 
-			return "realizar_simulado_inscrito/falha";
+			return "realizar_simulado_inscrito/realizar_simulado_oficial_falha";
 		}
 	}
 	
@@ -66,7 +66,7 @@ public class RealizarSimuladoInscritoController {
 				//insere resposta na tabela resposta;
 			}
 
-			return "realizar_simulado_inscrito/ok";
+			return "realizar_simulado_inscrito/realizar_simulado_oficial_ok";
 	}
 
 }

@@ -40,7 +40,7 @@ public class CriarSimuladoController {
 					+ ac.getCodAreaDeConhecimento());
 		}
 		model.addAttribute("areasDeConhecimento", areasDeConhecimento);
-		return "criar_simulado/formulario";
+		return "criar_simulado/criar_simulado";
 	}
 
 	@RequestMapping("adicionaSimulado")
@@ -65,7 +65,7 @@ public class CriarSimuladoController {
 		}
 
 		// ArrayList ac = request.getParameter("areaDeConhecimento");
-		ModelAndView mv = new ModelAndView("criar_simulado/formulario");
+		ModelAndView mv = new ModelAndView("criar_simulado/criar_simulado");
 		// mv.addObject("tarefas", tarefas);
 
 		if (result.hasFieldErrors()) {
