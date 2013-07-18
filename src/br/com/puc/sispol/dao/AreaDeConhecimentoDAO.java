@@ -1,17 +1,14 @@
 package br.com.puc.sispol.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import br.com.puc.sispol.ConnectionFactory;
 import br.com.puc.sispol.modelo.AreaDeConhecimento;
-import br.com.puc.sispol.modelo.Tarefa;
 
 public class AreaDeConhecimentoDAO {
 	private final Connection connection;
@@ -68,6 +65,61 @@ public class AreaDeConhecimentoDAO {
 		areaDeConhecimento.setTitulo(rs.getString("Titulo"));
 		areaDeConhecimento.setDescricao(rs.getString("Descricao"));
 		return areaDeConhecimento;
+	}
+
+	public AreaDeConhecimento busca(Long codigo) {
+		AreaDeConhecimento areaDeConhecimento = null;
+		// TODO Auto-generated method stub
+		if (codigo == null) {
+			throw new IllegalStateException("Codigo da area de conhecimento não deve ser nulo.");
+		}
+		try {
+			
+			PreparedStatement stmt = this.connection
+					.prepareStatement("select CodAreaDeConhecimento, Titulo, Descricao from AreaDeConhecimento where CodAreaDeConhecimento = ?");
+			stmt.setLong(1, codigo);
+			System.out.println(stmt);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				// adiciona a tarefa na lista
+				areaDeConhecimento = populaAreaDeConhecimento(rs);
+			}
+
+			rs.close();
+			stmt.close();
+
+			return areaDeConhecimento;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public List<AreaDeConhecimento> buscaPorTitulo(String titulo) {
+		// TODO Auto-generated method stub
+		if (titulo == null) {
+			throw new IllegalStateException("Titulo da area de conhecimento não deve ser nulo.");
+		}
+		try {
+			List<AreaDeConhecimento> areasDeConhecimento = new ArrayList<AreaDeConhecimento>();
+			PreparedStatement stmt = this.connection
+					.prepareStatement("select CodAreaDeConhecimento, Titulo, Descricao from AreaDeConhecimento where lower(Titulo) like lower(trim(?))");
+			stmt.setString(1, "%"+titulo+"%");
+			System.out.println(stmt);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				// adiciona a tarefa na lista
+				areasDeConhecimento.add(populaAreaDeConhecimento(rs));
+			}
+
+			rs.close();
+			stmt.close();
+
+			return areasDeConhecimento;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
