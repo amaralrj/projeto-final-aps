@@ -14,21 +14,23 @@
 				<c:if test="${usuarioLogado.perfil == 'USER'}">
 					<a class="brand" href="areaUsuario">Academida dos Aprovados</a>
 				</c:if>
-				<div class="btn-group">
-					<a class="btn dropdown-toggle btn-link" data-toggle="dropdown">
-						Consultar <span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li><a href="consultar_usuario.html">Consultar Usuário</a></li>
-						<li><a href="consultar_area_de_conhecimento.html">Consultar
-								Área de Conhecimento</a></li>
-						<li><a href="consultar_organizadora.html">Consultar
-								Organizadora</a></li>
-						<li><a href="consultar_concurso.html">Consultar Concurso</a></li>
-						<li><a href="consultar_questao.html">Consultar Questão</a></li>
-						<li><a href="consultar_noticia.html">Consultar Notícia</a></li>
-					</ul>
-				</div>
+				<c:if test="${usuarioLogado.perfil == 'ADMIN'}">
+					<div class="btn-group">
+						<a class="btn dropdown-toggle btn-link" data-toggle="dropdown">
+							Consultar <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="consultar_usuario.html">Consultar Usuário</a></li>
+							<li><a href="consultarAreaDeConhecimento">Consultar
+									Área de Conhecimento</a></li>
+							<li><a href="consultar_organizadora.html">Consultar
+									Organizadora</a></li>
+							<li><a href="consultar_concurso.html">Consultar Concurso</a></li>
+							<li><a href="consultar_questao.html">Consultar Questão</a></li>
+							<li><a href="consultar_noticia.html">Consultar Notícia</a></li>
+						</ul>
+					</div>
+				</c:if>
 				<div class="btn-group">
 					<a class="btn dropdown-toggle btn-link" data-toggle="dropdown">
 						Incluir <span class="caret"></span>
@@ -55,7 +57,8 @@
 					<li><a href="#">Consultar Gabarito</a></li>
 					<li><a href="#">Simulado Passado</a></li>
 					<li><a href="#">Classificação Geral</a></li>
-					<li><a href="consultarClassificacaoSimulado">Classificação do Simulado</a></li>
+					<li><a href="consultarClassificacaoSimulado">Classificação
+							do Simulado</a></li>
 					<li><a href="listaTarefas">Lista de tarefas</a></li>
 					<c:if test="${usuarioLogado ne null}">
 						<li class="divider"></li>
@@ -86,4 +89,4 @@
 
 		</div>
 	</div>
-</div>	
+</div>
