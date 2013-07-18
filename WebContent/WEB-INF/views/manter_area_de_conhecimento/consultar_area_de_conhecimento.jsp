@@ -57,10 +57,10 @@
 					<td>${areaDeConhecimento.codAreaDeConhecimento}</td>
 					<td>${areaDeConhecimento.titulo}</td>
 					<td></td>
-					<td><a href="#${areaDeConhecimento.codAreaDeConhecimento}" role="button" class="btn"
+					<td><a href="#modal_detalhar_${areaDeConhecimento.codAreaDeConhecimento}" role="button" class="btn"
 						data-toggle="modal">Detalhar</a> <a
-						href="alterar_area_de_conhecimento.html" role="button" class="btn">Alterar</a>
-						<a href="#modalExcluir" role="button" class="btn"
+						href="alterarAreaDeConhecimento?codigo=${areaDeConhecimento.codAreaDeConhecimento}" role="button" class="btn">Alterar</a>
+						<a href="#modal_excluir_${areaDeConhecimento.codAreaDeConhecimento}" role="button" class="btn"
 						data-toggle="modal">Excluir</a></td>
 				</tr>
 			</c:forEach>
@@ -70,7 +70,8 @@
 	</div>
 </div>
 <!-- Modal Excluir -->
-<div id="modalExcluir" class="modal hide fade" tabindex="-1"
+<c:forEach items="${areasDeConhecimento}" var="areaDeConhecimento">
+<div id="modal_excluir_${areaDeConhecimento.codAreaDeConhecimento}" class="modal hide fade" tabindex="-1"
 	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
 	style="display: none;">
 	<div class="modal-header" style="">
@@ -79,17 +80,18 @@
 		<h3>Excluir Área de Conhecimento</h3>
 	</div>
 	<div class="modal-body">
-		<p>Confirma a exclusão da área de conhecimento ?</p>
+		<p>Confirma a exclusão da área de conhecimento "${areaDeConhecimento.titulo}"?</p>
 	</div>
 	<div class="modal-footer">
-		<a href="#" class="btn" data-dismiss="modal" aria-hidden="true"
+		<a href="excluirAreaDeConhecimento?codigo=${areaDeConhecimento.codAreaDeConhecimento}" class="btn"  
 			style="">Sim</a> <a href="#" class="btn btn-primary"
 			data-dismiss="modal" aria-hidden="true" style="">Não</a>
 	</div>
 </div>
+</c:forEach>
 <c:forEach items="${areasDeConhecimento}" var="areaDeConhecimento">
 <!-- Modal Detalhar -->
-<div id="${areaDeConhecimento.codAreaDeConhecimento}" class="modal hide fade" style="display: none;"
+<div id="modal_detalhar_${areaDeConhecimento.codAreaDeConhecimento}" class="modal hide fade" style="display: none;"
 	aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"

@@ -1,17 +1,21 @@
 package br.com.puc.sispol.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.puc.sispol.dao.AreaDeConhecimentoDAO;
 import br.com.puc.sispol.modelo.AreaDeConhecimento;
+import br.com.puc.sispol.modelo.Tarefa;
 
 @Controller
 public class ManterAreaDeConhecimentoController {
@@ -56,16 +60,48 @@ public class ManterAreaDeConhecimentoController {
 		}
 		return mv;
 	}
-	
-	@RequestMapping("detalharAreaDeConhecimento")
-	public ModelAndView detalha(HttpServletRequest request) {
 
-		ModelAndView mv = new ModelAndView(
-				"manter_area_de_conhecimento/detalhar_area_de_conhecimento");
+	@RequestMapping("excluirAreaDeConhecimento")
+	public void exclui(HttpServletRequest request, HttpServletResponse response) {
 
-		if (request.getParameter("codAreaDeconhecimento") != null) {
-			mv.addObject("areaDeConhecimento", dao.busca( Long.parseLong(request.getParameter("codAreaDeconhecimento"),10)));
+		System.out.println("call excluirAreaDeConhecimento()");
+		if (request.getParameter("codigo") != null) {
+			dao.remove(Long.parseLong(request.getParameter("codigo"), 10));
 		}
+		System.out.println("Redireciana para a Home");
+		try {
+			response.sendRedirect("consultarAreaDeConhecimento");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@RequestMapping("alterarAreaDeConhecimento")
+	public String alterar(HttpServletRequest request, Model model) {
+		System.out.println("call alteraAreaDeConhecimento()");
+		if (request.getParameter("codigo") != null) {
+			model.addAttribute("areaDeConhecimento", dao.busca((Long.parseLong(
+					request.getParameter("codigo"), 10))));
+		}
+
+		return "manter_area_de_conhecimento/alterar_area_de_conhecimento";
+	}
+
+	@RequestMapping("alteraAreaDeConhecimento")
+	public ModelAndView altera(@Valid AreaDeConhecimento areaDeConhecimento,
+			BindingResult result) {
+		ModelAndView mv = new ModelAndView(
+				"manter_area_de_conhecimento/alterar_area_de_conhecimento");
+		
+		if (result.hasFieldErrors()) {
+			return mv;
+		}
+
+		dao.altera(areaDeConhecimento);
+
+		mv.addObject("sucesso", 1);
 		return mv;
 	}
 
