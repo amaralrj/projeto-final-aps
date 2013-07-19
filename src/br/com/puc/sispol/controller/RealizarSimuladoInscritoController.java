@@ -28,7 +28,7 @@ public class RealizarSimuladoInscritoController {
 		try {
 			
 			Simulado simulado = daoSimulado
-					.busca(codUsuario);
+					.buscaPorUsuario(codUsuario);
 			
 			model.addAttribute("simulado", simulado);
 			

@@ -41,7 +41,7 @@ public class CriarSimuladoController {
 	public ModelAndView adiciona(HttpServletRequest request,
 			@Valid Simulado simulado, BindingResult result) {
 
-		ModelAndView mv = new ModelAndView("criar_simulado/criar_simulado");
+		ModelAndView mv = new ModelAndView("criar_simulado/criar_simulado_sucesso");
 		mv.addObject("areasDeConhecimento", daoAreaDeConhecimento.lista());
 		int i = 0;
 		List<Questao> questoes = new ArrayList<Questao>();
@@ -68,6 +68,7 @@ public class CriarSimuladoController {
 		}
 
 		daoSimulado.adiciona(simulado);
+		mv.addObject("simulado", simulado);
 		mv.addObject("sucesso", 1);
 		return mv;
 	}
