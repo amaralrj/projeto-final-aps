@@ -6,7 +6,6 @@
 </head>
 <body>
 	<c:import url="menu.jsp" />
-
 	<br />
 	<div class="container">
 		<form:errors path="*" />
@@ -31,6 +30,10 @@
 				</div>
 			</div>
 			<button class="btn btn-large btn-primary" type="submit">Logon</button>
+	      <div>
+    	    <br>
+        	<a href="#">Recuperar Senha.</a>
+      	  </div>			
 		</form>
 	</div>
 	<c:import url="rodape.jsp" />
