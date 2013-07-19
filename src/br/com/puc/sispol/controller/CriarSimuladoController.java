@@ -33,13 +33,8 @@ public class CriarSimuladoController {
 
 	@RequestMapping("novoSimulado")
 	public String form(Model model) {
-		List<AreaDeConhecimento> areasDeConhecimento = daoAreaDeConhecimento
-				.lista();
-		for (AreaDeConhecimento ac : areasDeConhecimento) {
-			System.out.println("cod area de conneimento: "
-					+ ac.getCodAreaDeConhecimento());
-		}
-		model.addAttribute("areasDeConhecimento", areasDeConhecimento);
+		model.addAttribute("areasDeConhecimento", daoAreaDeConhecimento
+				.lista());
 		return "criar_simulado/criar_simulado";
 	}
 
@@ -60,7 +55,7 @@ public class CriarSimuladoController {
 
 		for (Questao q : questoes) {
 			System.out.println("Cod area de cinhecimento: "
-					+ q.getCodAreaDeConhecimento() + " Cod questao: "
+					+ q.getAreaDeConhecimento().getCodAreaDeConhecimento() + " Cod questao: "
 					+ q.getCodQuestao());
 		}
 
