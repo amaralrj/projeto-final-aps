@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `AreaDeConhecimento`;
 CREATE TABLE `AreaDeConhecimento` (
   `CodAreaDeConhecimento` int(11) NOT NULL AUTO_INCREMENT,
   `Descricao` varchar(255) DEFAULT NULL,
-  `Titulo` varchar(255) DEFAULT NULL,
+  `Titulo` varchar(255) NOT NULL,
   PRIMARY KEY (`CodAreaDeConhecimento`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -49,14 +49,14 @@ DROP TABLE IF EXISTS `Concurso`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Concurso` (
   `CodConcurso` int(11) NOT NULL,
-  `Titulo` varchar(255) DEFAULT NULL,
-  `Instituicao` varchar(255) DEFAULT NULL,
-  `DataDeRealizacao` date DEFAULT NULL,
-  `Cargo` varchar(255) DEFAULT NULL,
-  `CodOrganizadora` int(11) DEFAULT NULL,
+  `Titulo` varchar(255) NOT NULL,
+  `Instituicao` varchar(255) NOT NULL,
+  `DataDeRealizacao` date NOT NULL,
+  `Cargo` varchar(255) NOT NULL,
+  `CodOrganizadora` int(11) NOT NULL,
   PRIMARY KEY (`CodConcurso`),
   KEY `CodOrganizadora_idx` (`CodOrganizadora`),
-  CONSTRAINT `CodOrganizadora` FOREIGN KEY (`CodOrganizadora`) REFERENCES `Organizadora` (`CodOrganizadora`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `CodOrganizadora` FOREIGN KEY (`CodOrganizadora`) REFERENCES `Organizadora` (`CodOrganizadora`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -66,6 +66,7 @@ CREATE TABLE `Concurso` (
 
 LOCK TABLES `Concurso` WRITE;
 /*!40000 ALTER TABLE `Concurso` DISABLE KEYS */;
+INSERT INTO `Concurso` VALUES (1,'ENEM 2012 - Caderno 1 - Azul','','0000-00-00','',0);
 /*!40000 ALTER TABLE `Concurso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,8 +79,8 @@ DROP TABLE IF EXISTS `Noticia`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Noticia` (
   `CodNoticia` int(11) NOT NULL,
-  `Titulo` varchar(255) DEFAULT NULL,
-  `Texto` text,
+  `Titulo` varchar(255) NOT NULL,
+  `Texto` text NOT NULL,
   `DataDeCriacao` date DEFAULT NULL,
   PRIMARY KEY (`CodNoticia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -103,7 +104,7 @@ DROP TABLE IF EXISTS `Organizadora`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Organizadora` (
   `CodOrganizadora` int(11) NOT NULL,
-  `Nome` varchar(255) DEFAULT NULL,
+  `Nome` varchar(255) NOT NULL,
   `Url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`CodOrganizadora`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -127,21 +128,21 @@ DROP TABLE IF EXISTS `Questao`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Questao` (
   `CodQuestao` int(11) NOT NULL AUTO_INCREMENT,
-  `Enunciado` text,
-  `OpcaoA` varchar(255) DEFAULT NULL,
-  `OpcaoB` varchar(255) DEFAULT NULL,
-  `OpcaoC` varchar(255) DEFAULT NULL,
-  `OpcaoD` varchar(255) DEFAULT NULL,
-  `OpcaoE` varchar(255) DEFAULT NULL,
-  `OpcaoCorreta` set('A','B','C','D','E') DEFAULT NULL,
-  `CodAreaDeConhecimento` int(11) DEFAULT NULL,
-  `CodConcurso` int(11) DEFAULT NULL,
+  `Enunciado` text NOT NULL,
+  `OpcaoA` varchar(255) NOT NULL,
+  `OpcaoB` varchar(255) NOT NULL,
+  `OpcaoC` varchar(255) NOT NULL,
+  `OpcaoD` varchar(255) NOT NULL,
+  `OpcaoE` varchar(255) NOT NULL,
+  `OpcaoCorreta` set('A','B','C','D','E') NOT NULL,
+  `CodAreaDeConhecimento` int(11) NOT NULL,
+  `CodConcurso` int(11) NOT NULL,
   PRIMARY KEY (`CodQuestao`),
   KEY `CodAreaDeConhecimento_idx` (`CodAreaDeConhecimento`),
   KEY `CodConcurso_idx` (`CodConcurso`),
-  CONSTRAINT `CodAreaDeConhecimento` FOREIGN KEY (`CodAreaDeConhecimento`) REFERENCES `AreaDeConhecimento` (`CodAreaDeConhecimento`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `CodConcurso` FOREIGN KEY (`CodConcurso`) REFERENCES `Concurso` (`CodConcurso`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  CONSTRAINT `CodAreaDeConhecimento` FOREIGN KEY (`CodAreaDeConhecimento`) REFERENCES `AreaDeConhecimento` (`CodAreaDeConhecimento`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `CodConcurso` FOREIGN KEY (`CodConcurso`) REFERENCES `Concurso` (`CodConcurso`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +151,7 @@ CREATE TABLE `Questao` (
 
 LOCK TABLES `Questao` WRITE;
 /*!40000 ALTER TABLE `Questao` DISABLE KEYS */;
-INSERT INTO `Questao` VALUES (1,'Responda a questao de Port.',NULL,NULL,NULL,NULL,NULL,'A',1,NULL),(2,'Responda a questão de Mat.',NULL,NULL,NULL,NULL,NULL,'B',2,NULL);
+INSERT INTO `Questao` VALUES (1,'Responda a questao de Port.','','','','','','A',1,0),(2,'Responda a questão de Mat.','','','','','','B',2,0),(4,'Enuncaido2','opcao a','opcao b','opcao c','opcao d','opcao e','A',2,1);
 /*!40000 ALTER TABLE `Questao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,14 +164,14 @@ DROP TABLE IF EXISTS `Resposta`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Resposta` (
   `CodResposta` int(11) NOT NULL AUTO_INCREMENT,
-  `OpcaoEscolhida` set('A','B','C','D','E') DEFAULT NULL,
-  `CodQuestao` int(11) DEFAULT NULL,
-  `CodResultado` int(11) DEFAULT NULL,
+  `OpcaoEscolhida` set('A','B','C','D','E') NOT NULL,
+  `CodQuestao` int(11) NOT NULL,
+  `CodResultado` int(11) NOT NULL,
   PRIMARY KEY (`CodResposta`),
   KEY `CodQuestao_idx` (`CodQuestao`),
   KEY `CodResultado_idx` (`CodResultado`),
-  CONSTRAINT `CodQuestao` FOREIGN KEY (`CodQuestao`) REFERENCES `Questao` (`CodQuestao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `CodResultado` FOREIGN KEY (`CodResultado`) REFERENCES `Resultado` (`CodResultado`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `CodQuestao` FOREIGN KEY (`CodQuestao`) REFERENCES `Questao` (`CodQuestao`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `CodResultado` FOREIGN KEY (`CodResultado`) REFERENCES `Resultado` (`CodResultado`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -193,14 +194,14 @@ DROP TABLE IF EXISTS `Resultado`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Resultado` (
   `CodResultado` int(11) NOT NULL AUTO_INCREMENT,
-  `NotaDoSimulado` int(11) DEFAULT NULL,
-  `CodSimulado` int(11) DEFAULT NULL,
-  `CodUsuario` int(11) DEFAULT NULL,
+  `NotaDoSimulado` int(11) NOT NULL,
+  `CodSimulado` int(11) NOT NULL,
+  `CodUsuario` int(11) NOT NULL,
   PRIMARY KEY (`CodResultado`),
   KEY `CodUsuario_idx` (`CodUsuario`),
   KEY `CodSimulado_idx` (`CodSimulado`),
-  CONSTRAINT `CodSimulado` FOREIGN KEY (`CodSimulado`) REFERENCES `Simulado` (`CodSimulado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `CodUsuario` FOREIGN KEY (`CodUsuario`) REFERENCES `Usuario` (`CodUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `CodSimulado` FOREIGN KEY (`CodSimulado`) REFERENCES `Simulado` (`CodSimulado`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `CodUsuario` FOREIGN KEY (`CodUsuario`) REFERENCES `Usuario` (`CodUsuario`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -223,11 +224,11 @@ DROP TABLE IF EXISTS `Simulado`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Simulado` (
   `CodSimulado` int(11) NOT NULL AUTO_INCREMENT,
-  `DataDeRealizacao` date DEFAULT NULL,
-  `HoraDeRealizacao` time DEFAULT NULL,
-  `Duracao` int(11) DEFAULT NULL,
-  `PontuacaoMinima` int(11) DEFAULT NULL,
-  `Titulo` varchar(255) DEFAULT NULL,
+  `DataDeRealizacao` date NOT NULL,
+  `HoraDeRealizacao` time NOT NULL,
+  `Duracao` int(11) NOT NULL,
+  `PontuacaoMinima` int(11) NOT NULL,
+  `Titulo` varchar(255) NOT NULL,
   PRIMARY KEY (`CodSimulado`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -255,8 +256,8 @@ CREATE TABLE `SimuladoPossuiQuestao` (
   PRIMARY KEY (`CodQuestao`,`CodSimulado`),
   KEY `CodSimulado_idx` (`CodSimulado`),
   KEY `CodQuestao_idx` (`CodQuestao`),
-  CONSTRAINT `CodQuestao_questao` FOREIGN KEY (`CodQuestao`) REFERENCES `Questao` (`CodQuestao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `CodSimulado_questao` FOREIGN KEY (`CodSimulado`) REFERENCES `Simulado` (`CodSimulado`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `CodQuestao_questao` FOREIGN KEY (`CodQuestao`) REFERENCES `Questao` (`CodQuestao`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `CodSimulado_questao` FOREIGN KEY (`CodSimulado`) REFERENCES `Simulado` (`CodSimulado`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -279,14 +280,14 @@ DROP TABLE IF EXISTS `Usuario`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Usuario` (
   `CodUsuario` int(11) NOT NULL AUTO_INCREMENT,
-  `Nome` varchar(255) DEFAULT NULL,
-  `Sobrenome` varchar(255) DEFAULT NULL,
+  `Nome` varchar(255) NOT NULL,
+  `Sobrenome` varchar(255) NOT NULL,
   `DataDeNascimento` date DEFAULT NULL,
   `Escolaridade` varchar(255) DEFAULT NULL,
-  `Email` varchar(255) DEFAULT NULL,
-  `Senha` varchar(255) DEFAULT NULL,
-  `ReceberNotificacoes` tinyint(1) DEFAULT NULL,
-  `Perfil` set('ADMIN','USER') NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `Senha` varchar(255) NOT NULL,
+  `ReceberNotificacoes` tinyint(1) DEFAULT '0',
+  `Perfil` set('ADMIN','USER') NOT NULL DEFAULT 'USER',
   PRIMARY KEY (`CodUsuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -336,4 +337,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-07-03 21:46:04
+-- Dump completed on 2013-07-18 21:40:34
