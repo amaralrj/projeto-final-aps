@@ -33,8 +33,7 @@ public class CriarSimuladoController {
 
 	@RequestMapping("novoSimulado")
 	public String form(Model model) {
-		model.addAttribute("areasDeConhecimento", daoAreaDeConhecimento
-				.lista());
+		model.addAttribute("areasDeConhecimento", daoAreaDeConhecimento.lista());
 		return "criar_simulado/criar_simulado";
 	}
 
@@ -42,26 +41,27 @@ public class CriarSimuladoController {
 	public ModelAndView adiciona(HttpServletRequest request,
 			@Valid Simulado simulado, BindingResult result) {
 
+		ModelAndView mv = new ModelAndView("criar_simulado/criar_simulado");
+		mv.addObject("areasDeConhecimento", daoAreaDeConhecimento.lista());
 		int i = 0;
 		List<Questao> questoes = new ArrayList<Questao>();
 		while (request.getParameter("areaDeConhecimento[" + i + "]") != null) {
+
+			if (request.getParameter("numQuestoes[" + i + "]") == "") {
+				
+				return mv;
+			}
+
 			questoes.addAll(daoQuestao.listaParaSimulado(
-					request.getParameter("areaDeConhecimento[" + i + "]"),
-					request.getParameter("numQuestoes[" + i + "]")));
+					Long.parseLong(
+							request.getParameter("areaDeConhecimento[" + i
+									+ "]"), 10),
+					Long.parseLong(
+							request.getParameter("numQuestoes[" + i + "]"), 10)));
 			i++;
 		}
 
 		simulado.setQuestoes(questoes);
-
-		for (Questao q : questoes) {
-			System.out.println("Cod area de cinhecimento: "
-					+ q.getAreaDeConhecimento().getCodAreaDeConhecimento() + " Cod questao: "
-					+ q.getCodQuestao());
-		}
-
-		// ArrayList ac = request.getParameter("areaDeConhecimento");
-		ModelAndView mv = new ModelAndView("criar_simulado/criar_simulado");
-		// mv.addObject("tarefas", tarefas);
 
 		if (result.hasFieldErrors()) {
 			return mv;

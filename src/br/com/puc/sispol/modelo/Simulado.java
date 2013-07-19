@@ -25,6 +25,7 @@ public class Simulado {
 	@NotNull(message = "A Pontuação deve ser preenchida.")
 	private Integer pontuacaoMinima;
 
+	@NotNull(message = "O Título deve ser preenchida.")
 	@NotEmpty(message = "O Título deve ser preenchida.")
 	private String titulo;
 

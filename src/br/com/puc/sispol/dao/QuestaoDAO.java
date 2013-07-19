@@ -44,14 +44,18 @@ public class QuestaoDAO {
 		}
 	}
 
-	public List<Questao> listaParaSimulado(String codAreaDeconhecimento,
-			String numQuestoes) {
+	public List<Questao> listaParaSimulado(Long codAreaDeconhecimento,
+			Long numQuestoes) {
+		if(codAreaDeconhecimento == null || numQuestoes == null){
+			System.out.println("Parametros inválidos para QuestaoDAO.listaParaSimulado");
+		}
 		try {
 			List<Questao> questoes = new ArrayList<Questao>();
 			PreparedStatement stmt = this.connection
 					.prepareStatement("select * from Questao where CodAreaDeConhecimento = ? ORDER BY RAND() LIMIT 0,? ");
-			stmt.setLong(1, Integer.parseInt(codAreaDeconhecimento));
-			stmt.setLong(2, Integer.parseInt(numQuestoes));
+			stmt.setLong(1, codAreaDeconhecimento);
+			stmt.setLong(2, numQuestoes);
+			System.out.println(stmt);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
