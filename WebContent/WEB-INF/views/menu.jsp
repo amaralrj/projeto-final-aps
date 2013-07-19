@@ -26,7 +26,7 @@
 							<li><a href="consultar_organizadora.html">Consultar
 									Organizadora</a></li>
 							<li><a href="consultar_concurso.html">Consultar Concurso</a></li>
-							<li><a href="consultar_questao.html">Consultar Questão</a></li>
+							<li><a href="consultarQuestao">Consultar Questão</a></li>
 							<li><a href="consultar_noticia.html">Consultar Notícia</a></li>
 						</ul>
 					</div>
@@ -45,7 +45,7 @@
 						<li><a href="incluir_organizadora.html">Incluir
 								Organizadora</a></li>
 						<li><a href="incluir_concurso.html">Incluir Concurso</a></li>
-						<li><a href="incluir_questao.html">Incluir Questão</a></li>
+						<li><a href="novaQuestao">Incluir Questão</a></li>
 						<li><a href="incluir_noticia.html">Incluir Notícia</a></li>
 					</ul>
 				</div>
