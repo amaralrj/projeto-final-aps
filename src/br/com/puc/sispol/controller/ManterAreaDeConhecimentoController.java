@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.puc.sispol.dao.AreaDeConhecimentoDAO;
 import br.com.puc.sispol.modelo.AreaDeConhecimento;
-import br.com.puc.sispol.modelo.Tarefa;
 
 @Controller
 public class ManterAreaDeConhecimentoController {
