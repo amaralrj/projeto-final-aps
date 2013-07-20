@@ -144,9 +144,10 @@ public class ResultadoDAO {
 							+ "			ON (tbResul.CodSimulado = tbS.CodSimulado) "
 							+ "	WHERE "
 							+ "    	tbResp.OpcaoEscolhida = tbQ.OpcaoCorreta "
-							+ "    	AND tbResul.NotaDoSimulado is null "
+							+ "    	AND tbResul.NotaDoSimulado = '0' "
 							+ "		AND concat(curdate(), ' ' , curtime()) > DATE_ADD(TIMESTAMP(concat(tbS.DataDeRealizacao, ' ' , tbS.HoraDeRealizacao)), INTERVAL tbS.Duracao HOUR) "
 							+ "	GROUP BY 1 ");
+			System.out.println(stmt);
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
