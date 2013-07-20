@@ -150,7 +150,7 @@ public class ResultadoDAO {
 			System.out.println(stmt);
 			ResultSet rs = stmt.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 
 				System.out.println("Armazena Nota Simulado em Resultado.");
 

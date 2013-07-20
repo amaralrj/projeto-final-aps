@@ -1,7 +1,6 @@
 package br.com.puc.sispol.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +9,6 @@ import java.util.List;
 
 import br.com.puc.sispol.ConnectionFactory;
 import br.com.puc.sispol.modelo.AreaDeConhecimento;
-import br.com.puc.sispol.modelo.Tarefa;
 
 public class AreaDeConhecimentoDAO {
 	private final Connection connection;

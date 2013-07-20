@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.com.puc.sispol.ConnectionFactory;
-import br.com.puc.sispol.modelo.Tarefa;
 import br.com.puc.sispol.modelo.Usuario;
 
 public class UsuarioDAO {
