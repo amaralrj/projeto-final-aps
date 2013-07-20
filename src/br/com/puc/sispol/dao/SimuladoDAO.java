@@ -130,12 +130,13 @@ public class SimuladoDAO {
 					"Código do Usuário não deve ser nulo.");
 		}
 
-		String sql = "INSERT INTO Resultado (CodSimulado, CodUsuario) VALUES (?,?)";
+		String sql = "INSERT INTO Resultado (CodSimulado, CodUsuario, NotaDoSimulado) VALUES (?,?,?)";
 		PreparedStatement stmt;
 		try {
 			stmt = connection.prepareStatement(sql);
 			stmt.setLong(1, codSimulado);
 			stmt.setLong(2, codUsuario);
+			stmt.setLong(3, 0);
 			stmt.execute();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

@@ -3,13 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:import url="../cabecalho.jsp" />
 <c:import url="../menu.jsp" />
-<script type="text/javascript">
-		function efetuaInscricaoSimulado(codSimulado,codUsuario) {
-			$.post("efetuaInscricaoSimulado", {"codSimulado" : codSimulado, "codUsuario" : codUsuario}, function(resposta) {
-				$("#simulado_"+codSimulado).html(resposta);
-			});
-		}
-	</script>
+
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="pull-left span1">
@@ -54,21 +48,39 @@
 			<tbody>
 				<c:forEach items="${simulados}" var="simulado">
 					<tr>
-						<td>${simulado.codSimulado}</td>
-						<td>${simulado.titulo}</td>
-						<td><fmt:formatDate value="${simulado.dataDeRealizacao.time}"
-								pattern="dd/MM/yyyy" /></td>
-						<td id="simulado_${simulado.codSimulado}"><a href="#" role="button"
-							onclick="efetuaInscricaoSimulado(${simulado.codSimulado},${usuarioLogado.codUsuario})"
-							class="btn btn-small">Inscrever no Simulado</a></td>
+						<td>1</td>
+						<td>Simulado para Banco do Brasil-Tecnico Administrativo</td>
+						<td>20/10/2012</td>
+						<td><a href="#modal_inscrever_${simulado.codSimulado}" role="button" class="btn"
+						data-toggle="modal">Inscrever
+								no Simulado</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
 </div>
-
-
-
-
+<td></td>
+<!-- Modal Excluir -->
+<c:forEach items="${simulados}" var="simulado">
+	<div id="modal_inscrever_${simulado.codSimulado}"
+		class="modal hide fade" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		style="display: none;">
+		<div class="modal-header" style="">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3>Confirmar Inscrição</h3>
+		</div>
+		<div class="modal-body">
+			<p>Confirma a inscrição no simulado "${simulado.titulo}"?</p>
+		</div>
+		<div class="modal-footer">
+			<a
+				href="efetuaInscricaoSimulado?codSimulado=${simulado.codSimulado}&codUsuario=${usuarioLogado.codUsuario}"
+				class="btn" style="">Sim</a> <a href="#" class="btn btn-primary"
+				data-dismiss="modal" aria-hidden="true" style="">Não</a>
+		</div>
+	</div>
+</c:forEach>
 <c:import url="../rodape.jsp" />

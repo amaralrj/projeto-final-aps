@@ -23,8 +23,9 @@ public class EfetuarInscricaoSimuladoController {
 	}
 
 	@RequestMapping("efetuaInscricaoSimulado")
-	public void inscreve(Long codSimulado, Long codUsuario, HttpServletResponse response) {
+	public String inscreve(Long codSimulado, Long codUsuario, HttpServletResponse response, Model model) {
 		daoSimulado.efetuaInscricao(codSimulado, codUsuario);
-		response.setStatus(200);
+		model.addAttribute("simulado", daoSimulado.buscaPorCodigo(codSimulado));
+		return "efetuar_inscricao_simulado/listagem_inscricao_simulado_sucesso";
 	}
 }
