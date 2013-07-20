@@ -51,6 +51,8 @@ public class CriarSimuladoController {
 				
 				mv = new ModelAndView("criar_simulado/criar_simulado");
 				mv.addObject("areasDeConhecimento", daoAreaDeConhecimento.lista());
+				mv.addObject("erroNumQuestoes_" + i, 1);
+				
 				return mv;
 			}
 

@@ -6,7 +6,7 @@
 <script type="text/javascript">
 	var options = "";
 	<c:forEach items="${areasDeConhecimento}" var="areaDeConhecimento">
-	options  += '<option value="${areaDeConhecimento.codAreaDeConhecimento}">${areaDeConhecimento.titulo}</option>';
+	options += '<option value="${areaDeConhecimento.codAreaDeConhecimento}">${areaDeConhecimento.titulo}</option>';
 	</c:forEach>
 
 	$('#mais')
@@ -16,20 +16,18 @@
 
 						//recuperando o próximo numero da linha
 						var next = $('#questoes').children('div').length;
-						
+
 						fields = '<div id="questao_' + next + '" class="control-group">'
-						+ '<label class="control-label">*Área de Conhecimento</label>'
-						+ '<div class="controls controls-row">'
-						+ '<select id="areaDeConhecimento[' + next + ']" name="areaDeConhecimento[' + next + ']" class="input-xlarge span2" >'
-							+ options
-						+ '</select> '
-						+ '<label class="span1 control-label">*Número de Questões</label> '
-						+ '<input class="span2" type="text" name="numQuestoes[' + next + ']" placeholder="Núm. de Questões" />'
-						+ '</div>' 
-					+ '</div>';
-					
-						$('#questoes')
-								.append( fields	);
+								+ '<label class="control-label">*Área de Conhecimento</label>'
+								+ '<div class="controls controls-row">'
+								+ '<select id="areaDeConhecimento[' + next + ']" name="areaDeConhecimento[' + next + ']" class="input-xlarge span2" >'
+								+ options
+								+ '</select> '
+								+ '<label class="span1 control-label">*Número de Questões</label> '
+								+ '<input class="span2" type="text" name="numQuestoes[' + next + ']" placeholder="Núm. de Questões" />'
+								+ '</div>' + '</div>';
+
+						$('#questoes').append(fields);
 						//next = $('#questoes').children('div').length;
 						//armazenando a quantidade de linhas ou registros no elemento hidden
 						//$(':hidden').val(next);
@@ -39,7 +37,7 @@
 
 	$('#remove').live('click', function() {
 		//recuperando o próximo numero da linha
-		var next = $('#questoes').children('div').length-1;
+		var next = $('#questoes').children('div').length - 1;
 		$('#questao_' + next).remove();
 		$(':hidden').val(next);
 		return false;
@@ -61,8 +59,7 @@
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="icon-home"></i> Home</a> <span
 				class="divider">/</span></li>
-			<li><a href="#">Área de Administração</a> <span
-				class="divider">/</span></li>
+			<li><a href="#">Área de Administração</a> <span class="divider">/</span></li>
 			<li class="active">Criar Simulado</li>
 		</ol>
 		<form:errors path="*" />
@@ -87,14 +84,20 @@
 					<div class="control-group">
 						<label class="control-label">*Área de Conhecimento</label>
 						<div class="controls controls-row">
-							<select id="areaDeConhecimento[0]" name="areaDeConhecimento[0]" class="input-xlarge span2" >
+							<select id="areaDeConhecimento[0]" name="areaDeConhecimento[0]"
+								class="input-xlarge span2">
 								<c:forEach items="${areasDeConhecimento}"
 									var="areaDeConhecimento">
 									<option value="${areaDeConhecimento.codAreaDeConhecimento}">${areaDeConhecimento.titulo}</option>
 								</c:forEach>
-							</select> <label class="span1 control-label">*Número de Questões</label> <input
-								class="span2" name="numQuestoes[0]" type="text"
+							</select> 
+							<label class="span1 control-label">*Número de Questões</label> <input
+								class="input-slarge span2" name="numQuestoes[0]" type="text"
 								placeholder="Núm. de Questões" />
+							<c:if test="${erroNumQuestoes_0 eq 1}">
+								<span class="text-error">O Número de Questões deve ser
+									preenchido.</span>
+							</c:if>
 						</div>
 					</div>
 				</div>
