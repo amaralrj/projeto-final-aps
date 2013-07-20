@@ -25,9 +25,10 @@ public class ApurarResultadoController {
 	 */
 
 	@RequestMapping("apuraResultado")
-	public void apura(HttpServletResponse response) {
+	public String apura(HttpServletResponse response) {
 		System.out.println("Apurando Resultado...");
 		daoResultado.apura();
 		response.setStatus(200);
+		return "apurar_resultado/resultado_apurado";
 	}
 }
