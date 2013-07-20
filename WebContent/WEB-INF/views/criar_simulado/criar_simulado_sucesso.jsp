@@ -53,16 +53,20 @@
 			</tr>
 			<tr>
 				<td><b>Áreas de Conhecimento:</b></td>
-				<td>Área de Conhecimento 1 / Área de Conhecimento 2 </td>
+				<td><c:forEach items="${simulado.areasDeConhecimentoQuantidade}" var="areaDeConhecimento"
+					varStatus="rowCounter">${areaDeConhecimento.titulo} 
+					<c:if test="${!rowCounter.last}"> / </c:if>
+					</c:forEach>
+					</td>
 			</tr>
+			<c:forEach items="${simulado.areasDeConhecimentoQuantidade}" var="areaDeConhecimento"
+					varStatus="rowCounter">
 			<tr>
-				<td><b>Área de Conhecimento 1</b></td>
-				<td>XX questões</td>
+				<td><b>${areaDeConhecimento.titulo}</b></td>
+				<td>${areaDeConhecimento.quantidade}</td>
 			</tr>
-			<tr>
-				<td><b>Área de Conhecimento 2</b></td>
-				<td>XX questões</td>
-			</tr>
+			</c:forEach>
+			
 			</tbody>
 		</table>
 		<table style="width: 857px; height: 11px;">

@@ -49,6 +49,8 @@ public class CriarSimuladoController {
 
 			if (request.getParameter("numQuestoes[" + i + "]") == "") {
 				
+				mv = new ModelAndView("criar_simulado/criar_simulado");
+				mv.addObject("areasDeConhecimento", daoAreaDeConhecimento.lista());
 				return mv;
 			}
 
@@ -64,11 +66,13 @@ public class CriarSimuladoController {
 		simulado.setQuestoes(questoes);
 
 		if (result.hasFieldErrors()) {
+			mv = new ModelAndView("criar_simulado/criar_simulado");
+			mv.addObject("areasDeConhecimento", daoAreaDeConhecimento.lista());
 			return mv;
 		}
-
-		daoSimulado.adiciona(simulado);
-		mv.addObject("simulado", simulado);
+		Long codSimulado = daoSimulado.adiciona(simulado);
+		System.out.println("Codigo simulado: "+ codSimulado);
+		mv.addObject("simulado", daoSimulado.buscaPorCodigo(codSimulado));
 		mv.addObject("sucesso", 1);
 		return mv;
 	}

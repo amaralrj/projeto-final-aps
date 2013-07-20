@@ -27,7 +27,7 @@ public class SimuladoDAO {
 	}
 
 	// UCS - Criar Simulado
-	public void adiciona(Simulado simulado) {
+	public Long adiciona(Simulado simulado) {
 		String sql = "insert into Simulado (DataDeRealizacao, HoraDeRealizacao, Duracao, PontuacaoMinima, Titulo) values (?,?,?,?,?)";
 		PreparedStatement stmt;
 		ResultSet rs = null;
@@ -68,6 +68,7 @@ public class SimuladoDAO {
 				throw new RuntimeException(e);
 			}
 		}
+		return codSimulado;
 
 	}
 
@@ -243,18 +244,38 @@ public class SimuladoDAO {
 		try {
 			PreparedStatement stmt = this.connection
 					.prepareStatement("select * from sispol.Simulado where CodSimulado = ?");
+			
 			stmt.setLong(1, codSimulado);
-
+			System.out.println(stmt);
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
 				 simulado = populaSimulado(rs);
 			}
+			
 			simulado.setQuestoes(getQuestoesDoSimulado(simulado));
+			
+			stmt = this.connection
+					.prepareStatement("SELECT a.Titulo AS Titulo, count(*) AS Quantidade FROM sispol.Simulado AS s INNER JOIN sispol.SimuladoPossuiQuestao AS spq ON (s.CodSimulado = spq.CodSimulado) INNER JOIN sispol.Questao AS q ON (q.CodQuestao = spq.CodQuestao) INNER JOIN sispol.AreaDeConhecimento AS a ON (q.CodAreaDeConhecimento = a.CodAreaDeConhecimento) WHERE s.CodSimulado = ? GROUP BY 1");
+			stmt.setLong(1, codSimulado);
+			System.out.println(stmt);
+			rs = stmt.executeQuery();
+			
+			List<AreaDeConhecimentoQuantidade> areas = new ArrayList<AreaDeConhecimentoQuantidade>();
+			while (rs.next()) {
+				AreaDeConhecimentoQuantidade acQuantidade = new AreaDeConhecimentoQuantidade();
+				acQuantidade.setQuantidade(rs.getInt("Quantidade"));
+				acQuantidade.setTitulo(rs.getString("Titulo"));
+				areas.add(acQuantidade);
+				
+			}
+			simulado.setAreasDeConhecimentoQuantidade(areas);
+			
+			
 			rs.close();
 			stmt.close();
 
-			return null;
+			return simulado;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -271,7 +292,7 @@ public class SimuladoDAO {
 							+ " q.OpcaoB, "
 							+ " q.OpcaoC, "
 							+ " q.OpcaoD, "
-							+ "   q.OpcaoE "
+							+ "   q.OpcaoE, "
 							+ "   q.OpcaoCorreta "
 							+ " FROM "
 							+ " 	sispol.SimuladoPossuiQuestao AS s "
