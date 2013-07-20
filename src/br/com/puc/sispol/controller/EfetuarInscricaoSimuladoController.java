@@ -17,8 +17,8 @@ public class EfetuarInscricaoSimuladoController {
 	}
 
 	@RequestMapping("listaSimuladosAguardandoInscricao")
-	public String listaSimuladosAguardandoInscricao(Model model) {
-		model.addAttribute("simulados", daoSimulado.listaAguardandoInscricao());
+	public String listaSimuladosAguardandoInscricao(Long codUsuario, Model model) {
+		model.addAttribute("simulados", daoSimulado.listaAguardandoInscricao(codUsuario));
 		return "efetuar_inscricao_simulado/listagem_inscricao_simulado";
 	}
 

@@ -62,7 +62,7 @@
 						<li><a href="realizar_simulado_oficial.html">Consultar Estatísticas do Usuário</a></li>						
 						<li><a href="realizaSimulado?codUsuario=${usuarioLogado.codUsuario}">Realizar
 									Simulado Previamente Inscrito</a></li>
-						<li><a href="listaSimuladosAguardandoInscricao">Efetuar
+						<li><a href="listaSimuladosAguardandoInscricao?codUsuario=${usuarioLogado.codUsuario}">Efetuar
 									inscrição em Simulado</a></li>
 					</c:if>
 					

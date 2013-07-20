@@ -73,13 +73,14 @@ public class SimuladoDAO {
 	}
 
 	// UCS - Efetuar inscrição Simulado
-	public List<Simulado> listaAguardandoInscricao() {
+	public List<Simulado> listaAguardandoInscricao(Long codUsuario) {
 
 		try {
 			List<Simulado> simulados = new ArrayList<Simulado>();
 			PreparedStatement stmt = this.connection
-					.prepareStatement("select * from Simulado where DataDeRealizacao > current_date()");
-
+					.prepareStatement("select * from Simulado AS s where not exists ( SELECT s.* FROM Simulado AS s2 INNER JOIN Resultado AS r ON (s2.CodSimulado = r.CodSimulado) WHERE r.CodUsuario = ? and s.DataDeRealizacao > current_date() and s.Codsimulado = s2.codsimulado ) and s.DataDeRealizacao > current_date()");
+			stmt.setLong(1, codUsuario);
+			System.out.println(stmt);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
