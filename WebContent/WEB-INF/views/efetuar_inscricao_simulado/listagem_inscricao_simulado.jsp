@@ -48,9 +48,10 @@
 			<tbody>
 				<c:forEach items="${simulados}" var="simulado">
 					<tr>
-						<td>1</td>
-						<td>Simulado para Banco do Brasil-Tecnico Administrativo</td>
-						<td>20/10/2012</td>
+						<td>${simulado.codSimulado}</td>
+						<td>${simulado.titulo}</td>
+						<td><fmt:formatDate value="${simulado.dataDeRealizacao.time}"
+						pattern="dd/MM/yyyy" /></td>
 						<td><a href="#modal_inscrever_${simulado.codSimulado}" role="button" class="btn"
 						data-toggle="modal">Inscrever
 								no Simulado</a></td>
