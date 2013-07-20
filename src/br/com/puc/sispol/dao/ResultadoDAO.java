@@ -50,13 +50,13 @@ public class ResultadoDAO {
 		try {
 			System.out.println("Consulta Resultado...");
 			PreparedStatement stmt = this.connection.prepareStatement("select "
-					+ "    * " + " from " + "     Resultado AS r " + " WHERE "
+					+ "    * " + " from " + "     Resultado AS r INNER JOIN Usuario AS u ON (r.CodUsuario = u.CodUsuario)" + " WHERE "
 					+ " r.CodUsuario = ?   " + " AND r.CodSimulado = ?");
 			// popula o objeto tarefa
 
 			stmt.setLong(1, codUsuario);
 			stmt.setLong(2, simulado.getCodSimulado());
-
+			
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {

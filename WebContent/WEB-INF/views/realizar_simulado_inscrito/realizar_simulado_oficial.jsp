@@ -76,7 +76,7 @@
 				</tr>
 				<tr>
 					<td><b>Áreas de Conhecimento:</b></td>
-					<td><c:forEach items="${areasDeConhecimento}"
+					<td><c:forEach items="${simulado.areasDeConhecimentoQuantidade}"
 							var="areaDeConhecimento" varStatus="loop">
             			${areaDeConhecimento.titulo} 
             			<c:if test="${!loop.last}"> / </c:if>
