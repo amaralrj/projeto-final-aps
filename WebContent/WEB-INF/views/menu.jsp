@@ -22,14 +22,14 @@
 							Consultar <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="consultar_usuario.html">Consultar Usuário</a></li>
+							<li><a href="#">Consultar Usuário</a></li>
 							<li><a href="consultarAreaDeConhecimento">Consultar
 									Área de Conhecimento</a></li>
-							<li><a href="consultar_organizadora.html">Consultar
+							<li><a href="#">Consultar
 									Organizadora</a></li>
-							<li><a href="consultar_concurso.html">Consultar Concurso</a></li>
+							<li><a href="#">Consultar Concurso</a></li>
 							<li><a href="consultarQuestao">Consultar Questão</a></li>
-							<li><a href="consultar_noticia.html">Consultar Notícia</a></li>
+							<li><a href="#">Consultar Notícia</a></li>
 						</ul>
 					</div>
 				<div class="btn-group">
@@ -37,12 +37,12 @@
 						Incluir <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="incluir_usuario.html">Incluir Usuário</a></li>
+						<li><a href="#">Incluir Usuário</a></li>
 						<li><a href="novaAreaDeConhecimento">Incluir Área de Conhecimento</a></li>
-						<li><a href="incluir_organizadora.html">Incluir Organizadora</a></li>
-						<li><a href="incluir_concurso.html">Incluir Concurso</a></li>
+						<li><a href="#">Incluir Organizadora</a></li>
+						<li><a href="#">Incluir Concurso</a></li>
 						<li><a href="novaQuestao">Incluir Questão</a></li>
-						<li><a href="incluir_noticia.html">Incluir Notícia</a></li>
+						<li><a href="#">Incluir Notícia</a></li>
 					</ul>
 				</div>					
 				</c:if>
@@ -59,7 +59,7 @@
 					
 					<c:if test="${usuarioLogado.perfil == 'USER'}">
 						<li class="divider"></li>
-						<li><a href="realizar_simulado_oficial.html">Consultar Estatísticas do Usuário</a></li>						
+						<li><a href="#">Consultar Estatísticas do Usuário</a></li>						
 						<li><a href="realizaSimulado?codUsuario=${usuarioLogado.codUsuario}">Realizar
 									Simulado Previamente Inscrito</a></li>
 						<li><a href="listaSimuladosAguardandoInscricao?codUsuario=${usuarioLogado.codUsuario}">Efetuar

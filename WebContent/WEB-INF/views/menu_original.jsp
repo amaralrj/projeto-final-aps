@@ -1,4 +1,4 @@
-Ôªø<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="container">
@@ -20,14 +20,14 @@
 							Consultar <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="consultar_usuario.html">Consultar Usu√°rio</a></li>
+							<li><a href="#">Consultar Usu·rio</a></li>
 							<li><a href="consultarAreaDeConhecimento">Consultar
-									√Årea de Conhecimento</a></li>
-							<li><a href="consultar_organizadora.html">Consultar
+									¡rea de Conhecimento</a></li>
+							<li><a href="#">Consultar
 									Organizadora</a></li>
-							<li><a href="consultar_concurso.html">Consultar Concurso</a></li>
-							<li><a href="consultarQuestao">Consultar Quest√£o</a></li>
-							<li><a href="consultar_noticia.html">Consultar Not√≠cia</a></li>
+							<li><a href="#">Consultar Concurso</a></li>
+							<li><a href="consultarQuestao">Consultar Quest„o</a></li>
+							<li><a href="#">Consultar NotÌcia</a></li>
 						</ul>
 					</div>
 				</c:if>
@@ -36,17 +36,17 @@
 						Incluir <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="incluir_usuario.html">Incluir Usu√°rio</a></li>
+						<li><a href="#">Incluir Usu·rio</a></li>
 
 						<c:if test="${usuarioLogado.perfil == 'ADMIN'}">
-							<li><a href="novaAreaDeConhecimento">Incluir √Årea de
+							<li><a href="novaAreaDeConhecimento">Incluir ¡rea de
 									Conhecimento</a></li>
 						</c:if>
-						<li><a href="incluir_organizadora.html">Incluir
+						<li><a href="#">Incluir
 								Organizadora</a></li>
-						<li><a href="incluir_concurso.html">Incluir Concurso</a></li>
-						<li><a href="novaQuestao">Incluir Quest√£o</a></li>
-						<li><a href="incluir_noticia.html">Incluir Not√≠cia</a></li>
+						<li><a href="#">Incluir Concurso</a></li>
+						<li><a href="novaQuestao">Incluir Quest„o</a></li>
+						<li><a href="#">Incluir NotÌcia</a></li>
 					</ul>
 				</div>
 			</c:if>
@@ -56,21 +56,21 @@
 				<ul class="dropdown-menu">
 					<li><a href="#">Consultar Gabarito</a></li>
 					<li><a href="#">Simulado Passado</a></li>
-					<li><a href="#">Classifica√ß√£o Geral</a></li>
-					<li><a href="consultarClassificacaoSimulado">Classifica√ß√£o
+					<li><a href="#">ClassificaÁ„o Geral</a></li>
+					<li><a href="consultarClassificacaoSimulado">ClassificaÁ„o
 							do Simulado</a></li>
 					<li><a href="listaTarefas">Lista de tarefas</a></li>
 					<c:if test="${usuarioLogado ne null}">
 						<li class="divider"></li>
-						<li><a href="realizar_simulado_oficial.html">Consultar
-								Estat√≠sticas</a></li>
+						<li><a href="#">Consultar
+								EstatÌsticas</a></li>
 						<c:if test="${usuarioLogado.perfil == 'USER'}">
 							<li><a
 								href="realizaSimulado?codUsuario=${usuarioLogado.codUsuario}">Realizar
 									Simulado Previamente Inscrito</a></li>
 
 							<li><a href="listaSimuladosAguardandoInscricao">Efetuar
-									inscri√ß√£o em Simulado</a></li>
+									inscriÁ„o em Simulado</a></li>
 						</c:if>
 					</c:if>
 				</ul>

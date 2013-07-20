@@ -16,7 +16,7 @@
               <h1>Prova Online</h1>
               <p>Sistema de Simulados online</p>
               <p>
-                <a class="btn btn-large btn-primary" href="cadastro_de_usuario.html">Cadastre-se agora !<br></a> 
+                <a class="btn btn-large btn-primary" href="#">Cadastre-se agora !<br></a> 
               </p>
             </div>
             <div class="row-fluid">

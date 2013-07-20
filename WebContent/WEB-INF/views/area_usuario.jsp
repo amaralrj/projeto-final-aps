@@ -13,7 +13,7 @@
 	</div>
 	<div class="span11">
 		<ol class="breadcrumb">
-			<li><a href="home.html"><i class="icon-home"></i> Home</a> <span
+			<li><a href="#"><i class="icon-home"></i> Home</a> <span
 				class="divider">/</span></li>
 			<li class="active">Área do Usuário</li>
 		</ol>

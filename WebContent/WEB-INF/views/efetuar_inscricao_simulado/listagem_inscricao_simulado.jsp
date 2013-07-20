@@ -25,9 +25,9 @@
 	</div>
 	<div class="span11">
 		<ol class="breadcrumb">
-			<li><a href="home.html"><i class="icon-home"></i> Home</a> <span
+			<li><a href="#"><i class="icon-home"></i> Home</a> <span
 				class="divider">/</span></li>
-			<li><a href="area_usuario.html">Área do Usuário</a> <span
+			<li><a href="#">Área do Usuário</a> <span
 				class="divider">/</span></li>
 			<li class="active">Efetuar inscrição em Simulado</li>
 		</ol>

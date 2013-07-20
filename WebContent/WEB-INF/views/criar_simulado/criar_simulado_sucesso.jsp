@@ -17,9 +17,9 @@
 	</div>
 	<div class="span11">
 		<ol class="breadcrumb">
-			<li><a href="home.html"><i class="icon-home"></i> Home</a> <span
+			<li><a href="#"><i class="icon-home"></i> Home</a> <span
 				class="divider">/</span></li>
-			<li><a href="area_admin.html">Área de Administração</a> <span
+			<li><a href="#">Área de Administração</a> <span
 				class="divider">/</span></li>
 			<li class="active">Criar Simulado</li>
 		</ol>
