@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet"
-	href="https://djyhxgczejc94.cloudfront.net/builds/ede5837e3665a2534c0b18a1131a780959c55c49.css">
+	href="resources/css/logon_form.css">
 <c:import url="cabecalho.jsp" />
 </head>
 <body>
